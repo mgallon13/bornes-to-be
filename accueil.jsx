@@ -255,7 +255,7 @@ function BornesSection({ cardStyle }) {
         <div className="cards" data-style={cardStyle}>
           <article className="card reveal">
             <div className="media">
-              <Slot id="card-murale" placeholder="Borne murale dans un garage propre" />
+              <img src="uploads/borne-murale.jpg" alt="Borne murale installée" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
             </div>
             <div className="body">
               <div className="meta">
@@ -307,7 +307,7 @@ function BornesSection({ cardStyle }) {
         <article className="card reveal" style={{ marginTop: 32 }}>
           <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', minHeight: 360 }} className="solar-feat">
             <div className="media" style={{ aspectRatio: 'auto' }}>
-              <Slot id="card-solaire" placeholder="Schéma ou photo — panneaux + borne reliés" />
+              <img src="uploads/borne-solaire.png" alt="Borne connectée à des panneaux solaires" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
             </div>
             <div className="body" style={{ padding: '48px 48px' }}>
               <div className="meta">
