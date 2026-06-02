@@ -280,7 +280,7 @@ function BornesSection({ cardStyle }) {
 
           <article className="card reveal">
             <div className="media">
-              <img src="uploads/borne-sur-pied.jpg" alt="Borne sur pied en parking de résidence" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+              <img src="uploads/borne-sur-pied.jpg" alt="Borne sur pied en parking de résidence" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '70% 20%', display: 'block' }} />
             </div>
             <div className="body">
               <div className="meta">
