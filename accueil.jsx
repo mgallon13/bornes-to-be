@@ -24,7 +24,7 @@ function Hero({ variant }) {
       </div>
       <div className="hero-content">
         <div className="eyebrow">Bornes de recharge · Marseille</div>
-        <h1 className="h-display" style={{ textAlign: "center", padding: "10px", fontWeight: "300", color: "rgb(244, 244, 244)", letterSpacing: "-4.2px", lineHeight: "1.2", height: "447px" }}>
+        <h1 className="h-display" style={{ textAlign: "center", fontWeight: "300", color: "rgb(244, 244, 244)", letterSpacing: "-0.045em", lineHeight: "1.08" }}>
           La borne qui s'adapte à votre projet.
         </h1>
         <p className="lede" style={{ marginTop: 24, color: variant === 'fullbleed' ? 'rgba(255,255,255,.85)' : undefined, maxWidth: '46ch' }}>Votre véhicule, votre installation, vos habitudes de conduite, on analyse tout ça avant de vous proposer une solution. Parce qu'une mauvaise borne bien installée, c'est quand même une mauvaise borne

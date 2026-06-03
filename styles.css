@@ -683,3 +683,31 @@ button { font-family: inherit; }
 
 .wordmark { display: inline-flex; align-items: baseline; gap: 6px; font-family: var(--font-display); font-weight: 600; letter-spacing: -0.025em; }
 .wordmark .dot { width: 0.62em; height: 0.62em; border-radius: 50%; background: var(--accent); align-self: center; display: inline-block; }
+
+/* ── Phone calibration ─────────────────────────────────────────── */
+@media (max-width: 640px) {
+  :root { --hero-scale: 1; }
+
+  /* Hero (default / fullbleed) */
+  .hero { height: 100svh; min-height: 560px; }
+  .hero-content { padding-bottom: 40px; }
+  .hero-content .h-display {
+    font-size: clamp(34px, 9vw, 46px);
+    max-width: 100%;
+    margin-top: 12px;
+  }
+  .hero-content .lede { font-size: 15px; line-height: 1.5; margin-top: 14px; max-width: 100%; }
+  .hero-cta { margin-top: 24px; gap: 10px; }
+  .hero-cta .btn { width: 100%; justify-content: center; text-align: center; }
+
+  /* Section titles */
+  .h-1 { font-size: clamp(28px, 8vw, 38px); }
+  .h-2 { font-size: clamp(24px, 7vw, 32px); }
+
+  /* Tighter vertical rhythm */
+  :root { --density: 0.72; }
+}
+
+@media (max-width: 400px) {
+  .hero-content .h-display { font-size: 32px; }
+}
