@@ -110,7 +110,7 @@ function Header({ phone, currentPage = 'accueil', heroDark = true }) {
       </a>
       <div className="links">
         <a href="index.html" className={currentPage === 'accueil' ? 'active' : ''}>Accueil</a>
-        <a href="index.html#bornes">Nos bornes</a>
+        <a href="bornes.html" className={currentPage === 'bornes' ? 'active' : ''}>Nos bornes</a>
         <a href="index.html#solaire">Solaire + borne</a>
         <a href="particuliers.html" className={currentPage === 'particuliers' ? 'active' : ''}>Particuliers</a>
         <a href="index.html#contact">Contact</a>
