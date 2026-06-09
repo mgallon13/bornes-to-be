@@ -14,8 +14,8 @@ function BornesPageHeader() {
           La borne dépend de votre situation, pas de notre stock.
         </h1>
         <p className="lede" style={{ marginTop: 24 }}>
-          Répondez à 5 questions — on vous dit quelle solution correspond exactement à votre logement,
-          votre véhicule et vos habitudes.
+          Répondez à 5 questions — on vous dit quelle solution correspond exactement
+          à votre logement, votre véhicule et vos habitudes.
         </p>
         <div style={{ display: 'flex', gap: 14, marginTop: 36 }}>
           <a href="#choisir" className="btn btn-accent">Trouver ma borne →</a>
@@ -44,173 +44,112 @@ function BornesPageHeader() {
 const PRODUCTS = {
   murale: {
     id: 'murale',
-    n: '01',
+    icon: '🔌',
+    iconBg: '#e8f2ec',
     name: 'Borne murale',
     tag: 'Le choix le plus répandu',
     power: '7.4 à 22 kW',
-    charge: '100 km en ~3 h (7.4 kW)',
+    charge: '100 km en ~3 h',
     ideal: 'Maison individuelle, garage ou box privatif',
-    features: [
-      'Fixée au mur, discrète',
-      'Pilotage via application',
-      'Compatible tous VE',
-      'Installation en demi-journée',
-    ],
+    features: ['Fixée au mur, installation propre', 'Pilotage via application mobile', 'Compatible tous véhicules VE', 'Pose en demi-journée'],
     price: 'À partir de 1 290 € TTC',
-    featured: false,
   },
   pied: {
     id: 'pied',
-    n: '02',
+    icon: '🏗️',
+    iconBg: '#e8ecf5',
     name: 'Borne sur pied',
     tag: 'Solution collective',
     power: '7.4 à 22 kW',
     charge: 'Double prise simultanée',
-    ideal: 'Copropriété, parking commun, usage partagé',
-    features: [
-      'Accès par badge ou QR code',
-      'Refacturation automatique',
-      'Double prise possible',
-      'Supervision à distance',
-    ],
+    ideal: 'Copropriété, parking commun, résidence',
+    features: ['Accès par badge ou QR code', 'Refacturation automatique', 'Double prise simultanée', 'Supervision à distance'],
     price: 'Sur devis',
-    featured: false,
   },
   portable: {
     id: 'portable',
-    n: '03',
+    icon: '🔋',
+    iconBg: '#f5f0e8',
     name: 'Câble de recharge portable',
     tag: 'Flexibilité maximale',
     power: '1.8 à 3.7 kW',
     charge: '100 km en ~12 h',
-    ideal: 'Usage occasionnel, voyage, complément d\'une borne fixe',
-    features: [
-      'Se branche sur prise domestique',
-      'Aucune installation requise',
-      'À emporter partout',
-      'Idéal en dépannage ou en PHEV',
-    ],
+    ideal: 'Usage occasionnel, dépannage, PHEV',
+    features: ['Branché sur prise domestique', 'Aucune installation requise', 'À emporter partout', 'Idéal en complément'],
     price: 'À partir de 290 € TTC',
-    featured: false,
   },
   solaire: {
     id: 'solaire',
-    n: '04',
+    icon: '☀️',
+    iconBg: '#f5f2e0',
     name: 'Borne + intégration solaire',
     tag: '★ Notre expertise',
     power: '7.4 à 22 kW modulée',
-    charge: 'Priorité sur votre surplus solaire',
+    charge: 'Priorité sur surplus solaire',
     ideal: 'Maison avec panneaux solaires existants ou en projet',
-    features: [
-      'Recharge pilotée selon la production',
-      'Complément réseau si besoin',
-      'Supervision énergétique mensuelle',
-      'Retour sur investissement accéléré',
-    ],
+    features: ['Recharge pilotée selon production', 'Complément réseau si besoin', 'Supervision énergétique 6 mois', 'Retour sur investissement accéléré'],
     price: 'À partir de 1 890 € TTC',
-    featured: true,
   },
 };
 
-// ── Catalogue ─────────────────────────────────────────────────────────────
-function CatalogueSection() {
-  return (
-    <section className="section" id="catalogue">
-      <div className="wrap">
-        <SecHeader
-          eyebrow="Catalogue"
-          title="Quatre solutions pour quatre situations."
-          lede="Chaque borne répond à un contexte précis. Si vous n'êtes pas sûr, utilisez le questionnaire ci-dessus."
-        />
-        <div className="prod-grid">
-          {Object.values(PRODUCTS).map((p) => (
-            <article key={p.id} className={`prod-card reveal ${p.featured ? 'prod-featured' : ''}`}>
-              <div className="prod-top">
-                <div className="prod-meta">
-                  <span className="prod-n">{p.n}</span>
-                  <span className="prod-tag">{p.tag}</span>
-                </div>
-                <h3 className="prod-name">{p.name}</h3>
-                <p className="prod-ideal">{p.ideal}</p>
-              </div>
-              <div className="prod-specs">
-                <div><span className="spec-lbl">Puissance</span><span className="spec-val">{p.power}</span></div>
-                <div><span className="spec-lbl">Recharge</span><span className="spec-val">{p.charge}</span></div>
-              </div>
-              <ul className="prod-features">
-                {p.features.map((f, i) => <li key={i}>{f}</li>)}
-              </ul>
-              <div className="prod-foot">
-                <div className="prod-price">{p.price}</div>
-                <a href="#contact" className="btn-link">Demander un devis <span className="arr">↗</span></a>
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ── Questionnaire ─────────────────────────────────────────────────────────
+// ── Quiz steps ────────────────────────────────────────────────────────────
 const STEPS = [
   {
     id: 'logement',
     question: 'Quel est votre logement ?',
-    sub: "Cela détermine le type d'installation adapté.",
+    hint: "Cela détermine le type d'installation possible.",
     options: [
-      { value: 'maison', label: 'Maison individuelle', icon: '🏠', desc: 'Avec garage, allée ou jardin' },
-      { value: 'appartement', label: 'Appartement', icon: '🏢', desc: 'Avec parking privatif ou box' },
-      { value: 'copro', label: 'Copropriété', icon: '🅿️', desc: 'Parking commun, résidence' },
-      { value: 'autre', label: 'Autre situation', icon: '❓', desc: 'Stationnement variable' },
+      { value: 'maison',      icon: '🏠', label: 'Maison individuelle', desc: 'Avec garage, allée ou jardin' },
+      { value: 'appartement', icon: '🏢', label: 'Appartement',         desc: 'Avec parking privatif ou box' },
+      { value: 'copro',       icon: '🅿️', label: 'Copropriété',         desc: 'Parking commun, résidence' },
+      { value: 'autre',       icon: '❓', label: 'Autre situation',      desc: 'Stationnement variable' },
     ],
   },
   {
     id: 'stationnement',
     question: 'Où stationnez-vous principalement ?',
-    sub: 'On adapte la solution à votre emplacement réel.',
+    hint: 'On adapte la solution à votre emplacement réel.',
     options: [
-      { value: 'garage', label: 'Garage / box privatif', icon: '🔒', desc: 'Espace fermé qui vous appartient' },
-      { value: 'parking_couvert', label: 'Parking couvert', icon: '🏗️', desc: 'Couvert, privatif ou commun' },
-      { value: 'exterieur', label: 'Extérieur', icon: '🌿', desc: 'Allée, cour, devant chez moi' },
-      { value: 'variable', label: 'Variable', icon: '🔄', desc: 'Ça change selon les jours' },
+      { value: 'garage',          icon: '🔒', label: 'Garage / box privatif', desc: 'Espace fermé qui vous appartient' },
+      { value: 'parking_couvert', icon: '🏗️', label: 'Parking couvert',       desc: 'Couvert, privatif ou commun' },
+      { value: 'exterieur',       icon: '🌿', label: 'Extérieur',              desc: 'Allée, cour, devant chez moi' },
+      { value: 'variable',        icon: '🔄', label: 'Variable',               desc: 'Ça change selon les jours' },
     ],
   },
   {
     id: 'vehicule',
     question: 'Quel est votre véhicule ?',
-    sub: 'Le type de véhicule influence la puissance de borne recommandée.',
+    hint: 'Le type influence la puissance de borne recommandée.',
     options: [
-      { value: 've', label: '100 % électrique', icon: '⚡', desc: 'Zoé, Tesla, ID.3, e-208…' },
-      { value: 'phev', label: 'Hybride rechargeable', icon: '🔋', desc: 'PHEV : petite batterie, recharge rapide' },
-      { value: 'bientot', label: "Pas encore électrique", icon: '🚗', desc: "J'anticipe le passage au VE" },
+      { value: 've',      icon: '⚡', label: '100 % électrique',       desc: 'Zoé, Tesla, ID.3, e-208…' },
+      { value: 'phev',    icon: '🔋', label: 'Hybride rechargeable',    desc: 'PHEV : petite batterie, recharge rapide' },
+      { value: 'bientot', icon: '🚗', label: 'Pas encore électrique',   desc: "J'anticipe le passage au VE" },
     ],
   },
   {
     id: 'usage',
     question: 'Quel est votre usage quotidien ?',
-    sub: 'Plus vous roulez, plus la puissance de recharge compte.',
+    hint: 'Plus vous roulez, plus la puissance de recharge compte.',
     options: [
-      { value: 'intensif', label: 'Intensif', icon: '📅', desc: 'Plus de 50 km par jour' },
-      { value: 'regulier', label: 'Régulier', icon: '🚗', desc: '20 à 50 km par jour' },
-      { value: 'leger', label: 'Léger', icon: '🌙', desc: 'Moins de 20 km / week-ends' },
+      { value: 'intensif', icon: '📅', label: 'Intensif',  desc: 'Plus de 50 km par jour' },
+      { value: 'regulier', icon: '🚗', label: 'Régulier',  desc: '20 à 50 km par jour' },
+      { value: 'leger',    icon: '🌙', label: 'Léger',     desc: 'Moins de 20 km ou week-ends' },
     ],
   },
   {
     id: 'solaire',
     question: 'Avez-vous des panneaux solaires ?',
-    sub: 'Votre borne peut recharger votre voiture avec votre propre production.',
+    hint: 'Votre borne peut recharger votre voiture avec votre propre énergie.',
     options: [
-      { value: 'oui', label: "Oui, j'en ai", icon: '☀️', desc: 'Installation existante' },
-      { value: 'projet', label: 'En projet', icon: '📐', desc: "Je prévois d'en installer" },
-      { value: 'non', label: 'Non', icon: '❌', desc: 'Pas de projet solaire' },
+      { value: 'oui',    icon: '☀️', label: "Oui, j'en ai", desc: 'Installation existante' },
+      { value: 'projet', icon: '📐', label: 'En projet',     desc: "Je prévois d'en installer" },
+      { value: 'non',    icon: '❌', label: 'Non',            desc: 'Pas de projet solaire' },
     ],
   },
 ];
 
 function getRecommendation(answers) {
   const { logement, stationnement, vehicule, usage, solaire } = answers;
-
   if (logement === 'copro') return 'pied';
   if (solaire === 'oui' || solaire === 'projet') return 'solaire';
   if (stationnement === 'variable' || logement === 'autre') return 'portable';
@@ -218,102 +157,212 @@ function getRecommendation(answers) {
   return 'murale';
 }
 
+// ── Questionnaire component ───────────────────────────────────────────────
 function Questionnaire() {
-  const [step, setStep] = React.useState(0);
+  const [phase, setPhase]     = React.useState('entry');
+  const [step, setStep]       = React.useState(0);
   const [answers, setAnswers] = React.useState({});
-  const [done, setDone] = React.useState(false);
-  const [rec, setRec] = React.useState(null);
-  const [selecting, setSelecting] = React.useState(false);
+  const [rec, setRec]         = React.useState(null);
+  const [busy, setBusy]       = React.useState(false);
 
   const current = STEPS[step];
 
+  const handleStart = () => setPhase('quiz');
+
   const handleSelect = (value) => {
-    if (selecting) return;
-    setSelecting(true);
+    if (busy) return;
+    setBusy(true);
     const newAnswers = { ...answers, [current.id]: value };
     setAnswers(newAnswers);
     if (step < STEPS.length - 1) {
-      setTimeout(() => { setStep(step + 1); setSelecting(false); }, 260);
+      setTimeout(() => { setStep(s => s + 1); setBusy(false); }, 240);
     } else {
       const r = getRecommendation(newAnswers);
       setRec(r);
-      setTimeout(() => { setDone(true); setSelecting(false); }, 260);
+      setTimeout(() => { setPhase('result'); setBusy(false); }, 240);
     }
+  };
+
+  const handleBack = () => {
+    if (step > 0) setStep(s => s - 1);
+    else setPhase('entry');
   };
 
   const handleReset = () => {
     setStep(0);
     setAnswers({});
-    setDone(false);
     setRec(null);
+    setPhase('entry');
   };
 
   const product = rec ? PRODUCTS[rec] : null;
-  const progress = done ? 100 : (step / STEPS.length) * 100;
+  const progress = phase === 'result' ? 100 : (step / STEPS.length) * 100;
 
   return (
-    <section className="section" id="choisir" style={{ background: 'var(--bg-2)' }}>
+    <section className="quiz-section" id="choisir">
       <div className="wrap">
-        <SecHeader
-          eyebrow="Outil de sélection"
-          title="Quelle borne vous correspond ?"
-          lede="5 questions, 30 secondes. On vous recommande la solution adaptée à votre situation."
-        />
-        <div className="quiz-shell">
-          <div className="quiz-bar">
-            <div className="quiz-bar-fill" style={{ width: `${progress}%` }}></div>
-          </div>
 
-          {!done ? (
-            <div className="quiz-body">
-              <div className="quiz-top">
-                <span className="quiz-count">{step + 1} / {STEPS.length}</span>
-                {step > 0 && (
-                  <button className="quiz-back" onClick={() => setStep(step - 1)}>← Retour</button>
-                )}
-              </div>
-              <h3 className="quiz-q">{current.question}</h3>
-              <p className="quiz-sub">{current.sub}</p>
-              <div className="quiz-opts" data-n={current.options.length}>
-                {current.options.map((opt) => (
-                  <button
-                    key={opt.value}
-                    className={`quiz-opt${answers[current.id] === opt.value ? ' active' : ''}`}
-                    onClick={() => handleSelect(opt.value)}
-                  >
-                    <span className="qo-icon">{opt.icon}</span>
-                    <span className="qo-label">{opt.label}</span>
-                    <span className="qo-desc">{opt.desc}</span>
-                  </button>
-                ))}
-              </div>
+        {/* ── Entry ── */}
+        {phase === 'entry' && (
+          <div className="quiz-entry">
+            <div className="quiz-entry-left">
+              <div className="eyebrow">Outil de sélection</div>
+              <h2 className="h-1" style={{ marginTop: 16 }}>
+                Trouvez votre borne en 2 minutes
+              </h2>
+              <p className="lede">
+                5 questions sur votre logement, votre véhicule et vos habitudes.
+                On vous recommande exactement la solution qu'il vous faut.
+              </p>
+              <button className="btn btn-accent quiz-cta" onClick={handleStart}>
+                Commencer le test →
+              </button>
             </div>
-          ) : (
-            <div className="quiz-body quiz-result">
-              <div className="qr-eyebrow">Notre recommandation pour vous</div>
-              <div className="qr-card">
-                <div className="qr-head">
+            <div className="quiz-entry-right">
+              {STEPS.map((s, i) => (
+                <div key={i} className="quiz-preview-step">
+                  <span className="qps-n">{String(i + 1).padStart(2, '0')}</span>
+                  <span className="qps-q">{s.question}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* ── Quiz steps ── */}
+        {phase === 'quiz' && (
+          <div className="quiz-active">
+            <div className="quiz-nav">
+              <button className="quiz-back-btn" onClick={handleBack}>
+                ← {step === 0 ? 'Annuler' : 'Retour'}
+              </button>
+              <span className="quiz-step-count">{step + 1} / {STEPS.length}</span>
+            </div>
+
+            <div className="quiz-prog">
+              {STEPS.map((_, i) => (
+                <div key={i} className={`quiz-prog-seg${i < step ? ' past' : i === step ? ' active' : ''}`}></div>
+              ))}
+            </div>
+
+            <div className="quiz-question-area">
+              <h3 className="quiz-q">{current.question}</h3>
+              <p className="quiz-hint">{current.hint}</p>
+            </div>
+
+            <div className="quiz-cards" data-n={current.options.length}>
+              {current.options.map((opt) => (
+                <button
+                  key={opt.value}
+                  className={`quiz-card${answers[current.id] === opt.value ? ' selected' : ''}`}
+                  onClick={() => handleSelect(opt.value)}
+                >
+                  <span className="qc-icon">{opt.icon}</span>
+                  <span className="qc-label">{opt.label}</span>
+                  <span className="qc-desc">{opt.desc}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* ── Result ── */}
+        {phase === 'result' && product && (
+          <div className="quiz-result">
+            <div className="qr-header">
+              <div className="eyebrow">Résultat personnalisé</div>
+              <h2 className="h-1" style={{ marginTop: 12 }}>Notre recommandation pour vous</h2>
+            </div>
+
+            <div className="qr-card">
+              <div className="qr-visual" style={{ background: product.iconBg }}>
+                <span className="qr-visual-icon">{product.icon}</span>
+                <div className="qr-visual-label">Votre borne idéale</div>
+              </div>
+
+              <div className="qr-content">
+                <div className="qr-top">
                   <span className="qr-tag">{product.tag}</span>
-                  <h2 className="qr-name">{product.name}</h2>
+                  <h3 className="qr-name">{product.name}</h3>
                   <p className="qr-ideal">{product.ideal}</p>
                 </div>
-                <div className="qr-specs">
-                  <div><span className="spec-lbl">Puissance</span><span>{product.power}</span></div>
-                  <div><span className="spec-lbl">Recharge</span><span>{product.charge}</span></div>
-                  <div><span className="spec-lbl">Tarif indicatif</span><span>{product.price}</span></div>
+
+                <div className="qr-specs-row">
+                  <div className="qr-spec">
+                    <span className="spec-lbl">Puissance</span>
+                    <span className="spec-val">{product.power}</span>
+                  </div>
+                  <div className="qr-spec">
+                    <span className="spec-lbl">Recharge</span>
+                    <span className="spec-val">{product.charge}</span>
+                  </div>
+                  <div className="qr-spec">
+                    <span className="spec-lbl">Tarif indicatif</span>
+                    <span className="spec-val">{product.price}</span>
+                  </div>
                 </div>
+
                 <ul className="qr-features">
                   {product.features.map((f, i) => <li key={i}>{f}</li>)}
                 </ul>
-                <div className="qr-ctas">
-                  <a href="#contact" className="btn btn-accent">Demander un devis gratuit →</a>
-                  <a href="#catalogue" className="btn btn-ghost">Comparer toutes les solutions</a>
-                  <a href="tel:0652916578" className="btn btn-ghost">Prendre RDV par téléphone</a>
+              </div>
+            </div>
+
+            <div className="qr-cta-block">
+              <a href="#contact" className="btn btn-accent qr-cta-main">Demander un devis gratuit →</a>
+              <div className="qr-cta-secondary">
+                <a href="#catalogue" className="btn btn-ghost">Comparer toutes les solutions</a>
+                <a href="tel:0652916578" className="btn btn-ghost">📞 Prendre RDV</a>
+              </div>
+            </div>
+
+            <button className="quiz-restart-btn" onClick={handleReset}>
+              ↺ Refaire le questionnaire
+            </button>
+          </div>
+        )}
+
+      </div>
+    </section>
+  );
+}
+
+// ── Catalogue ─────────────────────────────────────────────────────────────
+function CatalogueSection() {
+  return (
+    <section className="section" id="catalogue" style={{ background: 'var(--bg-2)' }}>
+      <div className="wrap">
+        <SecHeader
+          eyebrow="Catalogue"
+          title="Quatre solutions, quatre situations."
+          lede="Chaque produit répond à un contexte précis. Pas sûr ? Utilisez le questionnaire ci-dessus."
+        />
+        <div className="prod-grid">
+          {Object.values(PRODUCTS).map((p) => (
+            <article key={p.id} className="prod-card reveal">
+              <div className="prod-visual" style={{ background: p.iconBg }}>
+                <span className="prod-visual-icon">{p.icon}</span>
+              </div>
+              <div className="prod-body">
+                <div className="prod-meta-row">
+                  <span className="prod-tag">{p.tag}</span>
+                </div>
+                <h3 className="prod-name">{p.name}</h3>
+                <p className="prod-ideal">{p.ideal}</p>
+                <div className="prod-specs-row">
+                  <div><span className="spec-lbl">Puissance</span><span className="spec-val">{p.power}</span></div>
+                  <div><span className="spec-lbl">Recharge</span><span className="spec-val">{p.charge}</span></div>
+                </div>
+                <ul className="prod-features">
+                  {p.features.map((f, i) => <li key={i}>{f}</li>)}
+                </ul>
+                <div className="prod-foot">
+                  <span className="prod-price">{p.price}</span>
+                  <a href="#contact" className="btn-link">Demander un devis <span className="arr">↗</span></a>
                 </div>
               </div>
-              <button className="quiz-restart" onClick={handleReset}>↺ Refaire le questionnaire</button>
-            </div>
-          )}
+            </article>
+          ))}
         </div>
       </div>
     </section>
@@ -324,27 +373,27 @@ function Questionnaire() {
 const BORNES_QUESTIONS = [
   {
     q: "Quelle puissance choisir pour mon véhicule ?",
-    a: "Ça dépend de trois choses : la puissance de charge embarquée de votre véhicule, votre tableau électrique (monophasé ou triphasé), et votre usage quotidien. Pour 90 % des particuliers, une borne 7,4 kW monophasée suffit : recharge complète en 6 à 8 heures, idéale pour la nuit. On ajuste lors de la visite technique."
+    a: "Ça dépend de trois choses : la puissance de charge embarquée de votre véhicule, votre tableau électrique (monophasé ou triphasé), et votre usage quotidien. Pour 90 % des particuliers, une borne 7,4 kW monophasée suffit : recharge complète en 6 à 8 heures. On ajuste lors de la visite technique."
   },
   {
     q: "Puis-je installer une borne si je suis locataire ou en copropriété ?",
-    a: "Oui. La loi Lagleize vous donne le droit d'installer une borne, même en copropriété, sauf opposition motivée de l'assemblée générale dans les 3 mois. La démarche varie selon que vous avez un box privatif ou une place en parking commun. On vous guide sur la procédure."
+    a: "Oui. La loi Lagleize vous donne le droit d'installer une borne, même en copropriété, sauf opposition motivée de l'assemblée générale dans les 3 mois. La démarche varie selon que vous avez un box privatif ou une place en parking commun."
   },
   {
-    q: "Quelle différence entre une borne IRVE et un simple câble de recharge ?",
-    a: "Un câble branché sur prise classique (Mode 1 ou 2) ne protège pas contre les défauts prolongés et peut endommager votre installation. Une borne IRVE (Mode 3) communique avec le véhicule, adapte la puissance et protège l'installation. C'est la seule solution homologuée pour un usage quotidien."
+    q: "Quelle différence entre une borne IRVE et un câble de recharge portable ?",
+    a: "Le câble portable se branche sur une prise domestique existante. Pratique et sans installation, il est plus lent (1.8 à 3.7 kW) et non homologué pour un usage quotidien intensif. La borne IRVE (Mode 3) est fixe, certifiée, protège l'installation et est adaptée à la recharge journalière."
   },
   {
     q: "Combien de temps dure une installation ?",
     a: "Une borne murale standard : une demi-journée. Une borne sur pied collective ou une configuration solaire : une journée, parfois plus selon les distances de câblage. Vous recevez un planning précis avant l'intervention."
   },
   {
-    q: "La borne fonctionne-t-elle avec tous les véhicules électriques ?",
-    a: "Oui. Toutes les bornes que nous installons utilisent le standard européen Type 2. Elles sont compatibles avec tous les VE vendus en Europe : Renault, Tesla, Volkswagen, BMW, Peugeot, Stellantis, etc."
+    q: "Y a-t-il des aides financières disponibles ?",
+    a: "Oui. Crédit d'impôt à 75 % pour les particuliers en résidence principale (plafonné à 300 € par véhicule). Prime ADVENIR pour les copropriétés. On vous indique ce à quoi vous avez droit directement dans le devis."
   },
   {
-    q: "Y a-t-il des aides financières disponibles ?",
-    a: "Oui. Pour les particuliers en résidence principale : crédit d'impôt à 75 % (plafonné à 300 € par véhicule). Pour les copropriétés : prime ADVENIR (AFIREV) sur les infrastructures collectives. On vous indique ce à quoi vous avez droit directement dans le devis."
+    q: "La borne fonctionne-t-elle avec tous les VE ?",
+    a: "Oui. Toutes les bornes utilisent le standard européen Type 2, compatible avec tous les véhicules électriques vendus en Europe : Renault, Tesla, Volkswagen, BMW, Peugeot, Stellantis, etc."
   },
 ];
 
@@ -377,4 +426,4 @@ function BornesFAQ() {
   );
 }
 
-Object.assign(window, { BornesPageHeader, CatalogueSection, Questionnaire, BornesFAQ });
+Object.assign(window, { BornesPageHeader, Questionnaire, CatalogueSection, BornesFAQ });
