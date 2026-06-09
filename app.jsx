@@ -194,4 +194,4 @@ function ParticuliersApp() {
   );
 }
 
-Object.assign(window, { AccueilApp, ParticuliersApp, TweakSection });
+Object.assign(window, { AccueilApp, BornesPageApp, ParticuliersApp, TweakSection });
