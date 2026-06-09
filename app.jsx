@@ -152,6 +152,27 @@ function AccueilApp() {
   );
 }
 
+// ── Bornes app ────────────────────────────────────────────────────────────
+function BornesPageApp() {
+  const [t, setTweak] = useTweaks(window.__TWEAK_DEFAULTS);
+  useApplyTweaks(t);
+  useReveal();
+  return (
+    <>
+      <Header phone={PHONE} currentPage="bornes" heroDark={false} />
+      <main>
+        <BornesPageHeader />
+        <BornesSection cardStyle={t.cardStyle} />
+        <BornesGuide />
+        <BornesFAQ />
+        <ContactSection />
+      </main>
+      <Footer phone={PHONE} />
+      <TweaksUI t={t} setTweak={setTweak} page="bornes" />
+    </>
+  );
+}
+
 // ── Particuliers app ──────────────────────────────────────────────────────
 function ParticuliersApp() {
   const [t, setTweak] = useTweaks(window.__TWEAK_DEFAULTS);
