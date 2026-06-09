@@ -162,8 +162,8 @@ function BornesPageApp() {
       <Header phone={PHONE} currentPage="bornes" heroDark={false} />
       <main>
         <BornesPageHeader />
-        <BornesSection cardStyle={t.cardStyle} />
-        <BornesGuide />
+        <Questionnaire />
+        <CatalogueSection />
         <BornesFAQ />
         <ContactSection />
       </main>
