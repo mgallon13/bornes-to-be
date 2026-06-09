@@ -119,10 +119,22 @@ function TweaksUI({ t, setTweak, page }) {
 }
 
 // ── Accueil app ────────────────────────────────────────────────────────────
+function useHashScroll() {
+  React.useEffect(() => {
+    const hash = window.location.hash;
+    if (!hash) return;
+    const el = document.querySelector(hash);
+    if (el) {
+      setTimeout(() => el.scrollIntoView({ behavior: 'smooth' }), 100);
+    }
+  }, []);
+}
+
 function AccueilApp() {
   const [t, setTweak] = useTweaks(window.__TWEAK_DEFAULTS);
   useApplyTweaks(t);
   useReveal();
+  useHashScroll();
   return (
     <>
       <Header phone={PHONE} currentPage="accueil"
