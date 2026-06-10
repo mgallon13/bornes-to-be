@@ -167,6 +167,195 @@ function getRecommendation(answers) {
   return 'murale';
 }
 
+// ── Result tiers data ─────────────────────────────────────────────────────
+const RESULT_TIERS = {
+  murale: {
+    intro: 'Une borne fixée chez vous — la solution idéale pour la recharge quotidienne.',
+    options: [
+      {
+        label: 'Économique',
+        brand: null,
+        model: 'Borne basique 7.4 kW',
+        icon: '🔌',
+        iconBg: '#f0f2f5',
+        photo: null,
+        power: '7.4 kW',
+        charge: '100 km en ~3 h',
+        price: 'À partir de 490 € TTC',
+        pros: ['Recharge journalière efficace', 'Installation simple et rapide', 'Prix contenu'],
+        cons: ['Pas de connectivité (sans app)', 'Pas de gestion intelligente de la charge', 'Marque générique'],
+      },
+      {
+        label: 'Standard',
+        brand: 'Hager',
+        model: null,
+        icon: '🔌',
+        iconBg: '#e8ecf5',
+        photo: null,
+        power: '7.4 kW',
+        charge: '100 km en ~3 h',
+        price: 'À partir de 890 € TTC',
+        pros: ['Wi-Fi intégré', 'IP54 / IK10 — résistant pluie et chocs', 'Intérieur & extérieur'],
+        cons: ['Monophasé uniquement (max 7.4 kW)', 'Disponible en noir uniquement'],
+      },
+      {
+        label: 'Premium',
+        brand: 'Wallbox',
+        model: 'Pulsar Max',
+        icon: '🔌',
+        iconBg: '#e8f2ec',
+        photo: null,
+        power: '7.4 / 11 / 22 kW',
+        charge: '100 km en ~1 h (22 kW)',
+        price: 'À partir de 1 290 € TTC',
+        pros: ['Wi-Fi + Bluetooth, application Wallbox', 'Triphasé jusqu\'à 22 kW', 'IP55, très compact (198×201 mm)', 'Compatible recharge solaire en option'],
+        cons: ['Investissement plus élevé'],
+      },
+    ],
+  },
+  pied: {
+    intro: 'Solution pour parking collectif — résidence, copropriété ou parking partagé.',
+    options: [
+      {
+        label: 'Économique',
+        brand: null,
+        model: 'Borne sur pied simple',
+        icon: '🏗️',
+        iconBg: '#eef0f5',
+        photo: null,
+        power: '7.4 kW',
+        charge: '100 km en ~3 h',
+        price: 'Sur devis',
+        pros: ['Installation simple et rapide', 'Compatible tous véhicules', 'Entretien minimal'],
+        cons: ['Pas de gestion des accès', 'Pas de refacturation automatique'],
+      },
+      {
+        label: 'Standard',
+        brand: null,
+        model: 'Borne collective RFID',
+        icon: '🏗️',
+        iconBg: '#e8ecf5',
+        photo: null,
+        power: '7.4 à 22 kW',
+        charge: '100 km en 1 à 3 h',
+        price: 'Sur devis',
+        pros: ['Accès par badge RFID', 'Supervision à distance', 'Gestion multi-utilisateurs'],
+        cons: ['Paramétrage initial nécessaire', 'Abonnement supervision en option'],
+      },
+      {
+        label: 'Premium',
+        brand: null,
+        model: 'Double prise + supervision',
+        icon: '🏗️',
+        iconBg: '#e8ecf5',
+        photo: null,
+        power: '7.4 à 22 kW × 2 sorties',
+        charge: '2 véhicules simultanés',
+        price: 'Sur devis',
+        pros: ['2 prises simultanées', 'Refacturation automatique', 'Rapport de consommation', 'Supervision complète'],
+        cons: ['Installation plus complexe', 'Investissement plus important'],
+      },
+    ],
+  },
+  portable: {
+    intro: 'Solution flexible — idéale pour stationnement variable ou véhicule hybride rechargeable.',
+    options: [
+      {
+        label: 'Économique',
+        brand: null,
+        model: 'Câble standard 1.8 kW',
+        icon: '🔋',
+        iconBg: '#f5f0e8',
+        photo: null,
+        power: '1.8 kW',
+        charge: '100 km en ~20 h',
+        price: 'À partir de 90 € TTC',
+        pros: ['Prix minimal', 'Prise domestique standard', 'Toujours disponible'],
+        cons: ['Très lent pour VE 100%', 'Sécurité limitée sur longue durée'],
+      },
+      {
+        label: 'Standard',
+        brand: null,
+        model: 'Câble renforcé 3.7 kW',
+        icon: '🔋',
+        iconBg: '#f5f0e8',
+        photo: null,
+        power: '3.7 kW',
+        charge: '100 km en ~8 h',
+        price: 'À partir de 290 € TTC',
+        pros: ['2× plus rapide que câble standard', 'Protection thermique intégrée', 'Homologué Mode 2', 'Portable, à emporter partout'],
+        cons: ['Plus lent qu\'une borne fixe', 'Prise renforcée recommandée'],
+      },
+      {
+        label: 'Premium',
+        brand: null,
+        model: 'Câble intelligent avec app',
+        icon: '🔋',
+        iconBg: '#f5f0e8',
+        photo: null,
+        power: '3.7 kW',
+        charge: '100 km en ~8 h',
+        price: 'À partir de 490 € TTC',
+        pros: ['Suivi consommation en temps réel', 'Programmation horaire', 'Protection courant résiduel avancée'],
+        cons: ['Pas plus rapide que le Standard', 'Application requise pour les fonctions avancées'],
+      },
+    ],
+  },
+  solaire: {
+    intro: 'Recharge pilotée par votre production solaire — économies maximales sur la durée.',
+    options: [
+      {
+        label: 'Économique',
+        brand: null,
+        model: 'Borne murale + délestage simple',
+        icon: '☀️',
+        iconBg: '#faf5e0',
+        photo: null,
+        power: '7.4 kW',
+        charge: '100 km en ~3 h',
+        price: 'À partir de 1 290 € TTC',
+        pros: ['Priorité sur surplus solaire', 'Installation simple', 'Compatible installation existante'],
+        cons: ['Pas de supervision énergétique avancée', 'Optimisation limitée'],
+      },
+      {
+        label: 'Standard',
+        brand: 'Wallbox',
+        model: 'Pulsar Max + EMS',
+        icon: '☀️',
+        iconBg: '#f5f2e0',
+        photo: null,
+        power: '7.4 / 11 / 22 kW',
+        charge: 'Modulée selon production',
+        price: 'À partir de 1 890 € TTC',
+        pros: ['Recharge modulée en temps réel', 'Application Wallbox + supervision 6 mois', 'Complément réseau automatique', 'IP55, compact'],
+        cons: ['Triphasé requis pour 22 kW', 'Compteur externe pour certaines fonctions'],
+      },
+      {
+        label: 'Premium',
+        brand: null,
+        model: 'Solution intégrée complète',
+        icon: '☀️',
+        iconBg: '#f0edd8',
+        photo: null,
+        power: '7.4 à 22 kW modulés',
+        charge: 'Optimisation solaire totale',
+        price: 'Sur devis',
+        pros: ['Audit énergétique inclus', 'Supervision annuelle', 'Tout-en-un : panneaux + borne + gestion'],
+        cons: ['Investissement initial plus élevé', 'Délai d\'installation plus long'],
+      },
+    ],
+  },
+};
+
+function getHighlightedTier(rec, answers) {
+  const { usage, vehicule } = answers;
+  if (rec === 'murale') {
+    if (vehicule === 've' && (usage === 'intensif' || usage === 'regulier')) return 2;
+    return 1;
+  }
+  return 1;
+}
+
 // ── Questionnaire component ───────────────────────────────────────────────
 function Questionnaire() {
   const [phase, setPhase]     = React.useState('entry');
