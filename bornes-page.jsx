@@ -394,8 +394,6 @@ function Questionnaire() {
     setPhase('entry');
   };
 
-  const product = rec ? PRODUCTS[rec] : null;
-  const progress = phase === 'result' ? 100 : (step / STEPS.length) * 100;
 
   return (
     <section className="quiz-section" id="choisir">
