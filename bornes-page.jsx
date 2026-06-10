@@ -285,8 +285,11 @@ function Questionnaire() {
             </div>
 
             <div className="qr-card">
-              <div className="qr-visual" style={{ background: product.iconBg }}>
-                <span className="qr-visual-icon">{product.icon}</span>
+              <div className="qr-visual" style={product.photo ? {} : { background: product.iconBg }}>
+                {product.photo
+                  ? <img src={product.photo} alt={product.name} className="qr-photo" />
+                  : <span className="qr-visual-icon">{product.icon}</span>
+                }
                 <div className="qr-visual-label">Votre borne idéale</div>
               </div>
 
@@ -294,6 +297,7 @@ function Questionnaire() {
                 <div className="qr-top">
                   <span className="qr-tag">{product.tag}</span>
                   <h3 className="qr-name">{product.name}</h3>
+                  {product.brand && <p className="qr-model-ref">{product.brand} {product.model}</p>}
                   <p className="qr-ideal">{product.ideal}</p>
                 </div>
 
