@@ -464,62 +464,56 @@ function Questionnaire() {
         )}
 
         {/* ── Result ── */}
-        {phase === 'result' && product && (
+        {phase === 'result' && rec && (
           <div className="quiz-result">
             <div className="qr-header">
               <div className="eyebrow">Résultat personnalisé</div>
-              <h2 className="h-1" style={{ marginTop: 12 }}>Notre recommandation pour vous</h2>
+              <h2 className="h-1" style={{ marginTop: 12 }}>Trois options pour votre situation</h2>
+              <p className="quiz-result-intro">{RESULT_TIERS[rec].intro}</p>
             </div>
 
-            <div className="qr-card">
-              <div className="qr-visual" style={product.photo ? {} : { background: product.iconBg }}>
-                {product.photo
-                  ? <img src={product.photo} alt={product.name} className="qr-photo" />
-                  : <span className="qr-visual-icon">{product.icon}</span>
-                }
-                <div className="qr-visual-label">Votre borne idéale</div>
-              </div>
-
-              <div className="qr-content">
-                <div className="qr-top">
-                  <span className="qr-tag">{product.tag}</span>
-                  <h3 className="qr-name">{product.name}</h3>
-                  {product.brand && <p className="qr-model-ref">{product.brand} {product.model}</p>}
-                  <p className="qr-ideal">{product.ideal}</p>
-                </div>
-
-                <div className="qr-specs-row">
-                  <div className="qr-spec">
-                    <span className="spec-lbl">Puissance</span>
-                    <span className="spec-val">{product.power}</span>
+            <div className="qr-tiers">
+              {RESULT_TIERS[rec].options.map((opt, idx) => {
+                const isRec = idx === getHighlightedTier(rec, answers);
+                return (
+                  <div key={idx} className={`qrt-card${isRec ? ' qrt-highlighted' : ''}`}>
+                    <div className="qrt-header">
+                      {isRec && <div className="qrt-rec-label">Recommandé</div>}
+                      <div className="qrt-tier-badge">{opt.label}</div>
+                    </div>
+                    <div className="qrt-visual" style={{ background: opt.iconBg }}>
+                      {opt.photo
+                        ? <img src={opt.photo} alt={opt.model} className="qrt-photo" />
+                        : <span className="qrt-icon">{opt.icon}</span>
+                      }
+                    </div>
+                    <div className="qrt-body">
+                      {(opt.brand || opt.model) && (
+                        <div className="qrt-brand">{[opt.brand, opt.model].filter(Boolean).join(' ')}</div>
+                      )}
+                      <div className="qrt-price">{opt.price}</div>
+                      <div className="qrt-power">{opt.power} — {opt.charge}</div>
+                      <div className="qrt-pros-cons">
+                        <ul className="qrt-pros">
+                          {opt.pros.map((p, j) => <li key={j}>{p}</li>)}
+                        </ul>
+                        {opt.cons && opt.cons.length > 0 && (
+                          <ul className="qrt-cons">
+                            {opt.cons.map((c, j) => <li key={j}>{c}</li>)}
+                          </ul>
+                        )}
+                      </div>
+                      <a href="#contact" className="btn btn-accent qrt-cta">Devis gratuit →</a>
+                    </div>
                   </div>
-                  <div className="qr-spec">
-                    <span className="spec-lbl">Recharge</span>
-                    <span className="spec-val">{product.charge}</span>
-                  </div>
-                  <div className="qr-spec">
-                    <span className="spec-lbl">Tarif indicatif</span>
-                    <span className="spec-val">{product.price}</span>
-                  </div>
-                </div>
-
-                <ul className="qr-features">
-                  {product.features.map((f, i) => <li key={i}>{f}</li>)}
-                </ul>
-              </div>
+                );
+              })}
             </div>
 
-            <div className="qr-cta-block">
-              <a href="#contact" className="btn btn-accent qr-cta-main">Demander un devis gratuit →</a>
-              <div className="qr-cta-secondary">
-                <a href="#catalogue" className="btn btn-ghost">Comparer toutes les solutions</a>
-                <a href="tel:0652916578" className="btn btn-ghost">📞 Prendre RDV</a>
-              </div>
+            <div className="qr-bottom-row">
+              <a href="tel:0652916578" className="btn btn-ghost">📞 Prendre RDV</a>
+              <button className="quiz-restart-btn" onClick={handleReset}>↺ Refaire le questionnaire</button>
             </div>
-
-            <button className="quiz-restart-btn" onClick={handleReset}>
-              ↺ Refaire le questionnaire
-            </button>
           </div>
         )}
 
