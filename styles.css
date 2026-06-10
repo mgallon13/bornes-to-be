@@ -698,6 +698,8 @@ button { font-family: inherit; }
   flex-direction: column; gap: 8px;
 }
 .prod-visual-icon { font-size: 64px; line-height: 1; }
+.prod-photo { width: 100%; height: 100%; object-fit: cover; display: block; }
+.prod-model-ref { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.10em; text-transform: uppercase; color: var(--accent); margin: -10px 0 0; }
 .prod-body { padding: 28px 28px 32px; display: flex; flex-direction: column; gap: 16px; flex: 1; }
 .prod-meta-row { display: flex; align-items: center; }
 .prod-tag { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-muted); }
