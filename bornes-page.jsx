@@ -44,14 +44,24 @@ function BornesPageHeader() {
 const PRODUCTS = {
   murale: {
     id: 'murale',
+    brand: 'Wallbox',
+    model: 'Pulsar Max',
     icon: '🔌',
     iconBg: '#e8f2ec',
+    photo: null,
     name: 'Borne murale',
     tag: 'Le choix le plus répandu',
-    power: '7.4 à 22 kW',
+    power: '7.4 / 11 / 22 kW',
     charge: '100 km en ~3 h',
     ideal: 'Maison individuelle, garage ou box privatif',
-    features: ['Fixée au mur, installation propre', 'Pilotage via application mobile', 'Compatible tous véhicules VE', 'Pose en demi-journée'],
+    features: [
+      'Wi-Fi & Bluetooth, application Wallbox',
+      'Câble 5m Type 2 inclus (ou socket avec obturateur)',
+      'IP55 / IK10 — intérieur et extérieur',
+      'Gestion de charge statique incluse',
+      'Compatible recharge solaire en option',
+      'Compact : 198 × 201 mm, blanc ou noir',
+    ],
     price: 'À partir de 1 290 € TTC',
   },
   pied: {
