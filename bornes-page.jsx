@@ -14,8 +14,8 @@ function BornesPageHeader() {
           La borne dépend de votre situation, pas de notre stock.
         </h1>
         <p className="lede" style={{ marginTop: 24 }}>
-          Répondez à 5 questions — on vous dit quelle solution correspond exactement
-          à votre logement, votre véhicule et vos habitudes.
+          Répondez à 4 questions — on vous dit quelle solution correspond exactement
+          à votre logement, votre installation et vos habitudes.
         </p>
         <div style={{ display: 'flex', gap: 14, marginTop: 36 }}>
           <a href="#choisir" className="btn btn-accent">Trouver ma borne →</a>
@@ -105,45 +105,24 @@ const PRODUCTS = {
 // ── Quiz steps ────────────────────────────────────────────────────────────
 const STEPS = [
   {
-    id: 'logement',
-    question: 'Quel est votre logement ?',
-    hint: "Cela détermine le type d'installation possible.",
-    options: [
-      { value: 'maison',      icon: '🏠', label: 'Maison individuelle', desc: 'Avec garage, allée ou jardin' },
-      { value: 'appartement', icon: '🏢', label: 'Appartement',         desc: 'Avec parking privatif ou box' },
-      { value: 'copro',       icon: '🅿️', label: 'Copropriété',         desc: 'Parking commun, résidence' },
-      { value: 'autre',       icon: '❓', label: 'Autre situation',      desc: 'Stationnement variable' },
-    ],
-  },
-  {
     id: 'stationnement',
-    question: 'Où stationnez-vous principalement ?',
-    hint: 'On adapte la solution à votre emplacement réel.',
+    question: 'Votre espace de stationnement ?',
+    hint: "Cela détermine quel type de solution est possible.",
     options: [
-      { value: 'garage',          icon: '🔒', label: 'Garage / box privatif', desc: 'Espace fermé qui vous appartient' },
-      { value: 'parking_couvert', icon: '🏗️', label: 'Parking couvert',       desc: 'Couvert, privatif ou commun' },
-      { value: 'exterieur',       icon: '🌿', label: 'Extérieur',              desc: 'Allée, cour, devant chez moi' },
-      { value: 'variable',        icon: '🔄', label: 'Variable',               desc: 'Ça change selon les jours' },
+      { value: 'maison',      icon: '🏠', label: 'Maison individuelle',      desc: 'Garage, allée, cour' },
+      { value: 'appartement', icon: '🏢', label: 'Appartement / box privatif', desc: 'Espace fermé qui vous appartient' },
+      { value: 'copro',       icon: '🅿️', label: 'Copropriété',              desc: 'Parking collectif, résidence' },
+      { value: 'variable',    icon: '🔄', label: 'Pas de place fixe',         desc: 'Stationnement variable selon les jours' },
     ],
   },
   {
-    id: 'vehicule',
-    question: 'Quel est votre véhicule ?',
-    hint: 'Le type influence la puissance de borne recommandée.',
+    id: 'installation',
+    question: 'Votre installation électrique ?',
+    hint: 'Cela détermine la puissance maximale disponible.',
     options: [
-      { value: 've',      icon: '⚡', label: '100 % électrique',       desc: 'Zoé, Tesla, ID.3, e-208…' },
-      { value: 'phev',    icon: '🔋', label: 'Hybride rechargeable',    desc: 'PHEV : petite batterie, recharge rapide' },
-      { value: 'bientot', icon: '🚗', label: 'Pas encore électrique',   desc: "J'anticipe le passage au VE" },
-    ],
-  },
-  {
-    id: 'usage',
-    question: 'Quel est votre usage quotidien ?',
-    hint: 'Plus vous roulez, plus la puissance de recharge compte.',
-    options: [
-      { value: 'intensif', icon: '📅', label: 'Intensif',  desc: 'Plus de 50 km par jour' },
-      { value: 'regulier', icon: '🚗', label: 'Régulier',  desc: '20 à 50 km par jour' },
-      { value: 'leger',    icon: '🌙', label: 'Léger',     desc: 'Moins de 20 km ou week-ends' },
+      { value: 'mono',   icon: '⚡',    label: 'Monophasé',       desc: 'Standard, la majorité des logements' },
+      { value: 'tri',    icon: '⚡⚡⚡', label: 'Triphasé',        desc: 'Maisons récentes, installations puissantes' },
+      { value: 'saispa', icon: '❓',    label: 'Je ne sais pas',  desc: 'On vérifiera lors de la visite technique' },
     ],
   },
   {
@@ -151,65 +130,108 @@ const STEPS = [
     question: 'Avez-vous des panneaux solaires ?',
     hint: 'Votre borne peut recharger votre voiture avec votre propre énergie.',
     options: [
-      { value: 'oui',    icon: '☀️', label: "Oui, j'en ai", desc: 'Installation existante' },
-      { value: 'projet', icon: '📐', label: 'En projet',     desc: "Je prévois d'en installer" },
-      { value: 'non',    icon: '❌', label: 'Non',            desc: 'Pas de projet solaire' },
+      { value: 'oui', icon: '☀️', label: "Oui, j'en ai", desc: 'Installation solaire existante' },
+      { value: 'non', icon: '🔌', label: 'Non',           desc: 'Pas de projet solaire actuellement' },
+    ],
+  },
+  {
+    id: 'vehicule',
+    question: 'Votre véhicule ?',
+    hint: 'Influence la gamme recommandée.',
+    options: [
+      { value: 've',      icon: '⚡', label: '100 % électrique',     desc: 'Zoé, Tesla, ID.3, e-208…' },
+      { value: 'phev',    icon: '🔋', label: 'Hybride rechargeable',  desc: 'PHEV : petite batterie, recharge rapide' },
+      { value: 'bientot', icon: '🚗', label: 'Pas encore électrique', desc: "J'anticipe le passage au VE" },
     ],
   },
 ];
 
+function getNextStepId(currentId, newAnswers) {
+  if (currentId === 'stationnement') {
+    const v = newAnswers.stationnement;
+    if (v === 'copro' || v === 'variable') return null;
+    return 'installation';
+  }
+  if (currentId === 'installation') return 'solaire';
+  if (currentId === 'solaire') {
+    if (newAnswers.solaire === 'oui') return null;
+    return 'vehicule';
+  }
+  return null; // vehicule → result
+}
+
 function getRecommendation(answers) {
-  const { logement, stationnement, vehicule, usage, solaire } = answers;
-  if (logement === 'copro') return 'pied';
-  if (solaire === 'oui' || solaire === 'projet') return 'solaire';
-  if (stationnement === 'variable' || logement === 'autre') return 'portable';
-  if (vehicule === 'phev' && usage === 'leger') return 'portable';
-  return 'murale';
+  const { stationnement, installation, solaire } = answers;
+  if (stationnement === 'copro') return 'pied';
+  if (stationnement === 'variable') return 'portable';
+  if (solaire === 'oui') return 'solaire';
+  if (installation === 'tri') return 'murale_tri';
+  return 'murale_mono';
 }
 
 // ── Result tiers data ─────────────────────────────────────────────────────
 const RESULT_TIERS = {
-  murale: {
-    intro: 'Une borne fixée chez vous — la solution idéale pour la recharge quotidienne.',
+  murale_mono: {
+    intro: "Votre installation monophasée permet jusqu'à 7.4 kW — une recharge complète en une nuit, idéal pour 90 % des usages.",
     options: [
       {
         label: 'Économique',
-        brand: null,
-        model: 'Borne basique 7.4 kW',
-        icon: '🔌',
-        iconBg: '#f0f2f5',
-        photo: null,
-        power: '7.4 kW',
-        charge: '100 km en ~3 h',
+        brand: null, model: 'Borne basique 7.4 kW',
+        icon: '🔌', iconBg: '#f0f2f5', photo: null,
+        power: '7.4 kW', charge: '100 km en ~3 h',
         price: 'À partir de 490 € TTC',
         pros: ['Recharge journalière efficace', 'Installation simple et rapide', 'Prix contenu'],
         cons: ['Pas de connectivité (sans app)', 'Pas de gestion intelligente de la charge', 'Marque générique'],
       },
       {
         label: 'Standard',
-        brand: 'Hager',
-        model: null,
-        icon: '🔌',
-        iconBg: '#e8ecf5',
-        photo: null,
-        power: '7.4 kW',
-        charge: '100 km en ~3 h',
+        brand: 'Hager', model: null,
+        icon: '🔌', iconBg: '#e8ecf5', photo: null,
+        power: '7.4 kW', charge: '100 km en ~3 h',
         price: 'À partir de 890 € TTC',
-        pros: ['Wi-Fi intégré', 'IP54 / IK10 — résistant pluie et chocs', 'Intérieur & extérieur'],
-        cons: ['Monophasé uniquement (max 7.4 kW)', 'Disponible en noir uniquement'],
+        pros: ['Wi-Fi intégré', 'IP54 / IK10 — résistant pluie et chocs', 'Intérieur & extérieur', 'Marque professionnelle reconnue'],
+        cons: ['Monophasé uniquement', 'Disponible en noir uniquement'],
       },
       {
         label: 'Premium',
-        brand: 'Wallbox',
-        model: 'Pulsar Max',
-        icon: '🔌',
-        iconBg: '#e8f2ec',
-        photo: null,
-        power: '7.4 / 11 / 22 kW',
-        charge: '100 km en ~1 h (22 kW)',
+        brand: 'Wallbox', model: 'Pulsar Max',
+        icon: '🔌', iconBg: '#e8f2ec', photo: null,
+        power: '7.4 kW', charge: '100 km en ~3 h',
         price: 'À partir de 1 290 € TTC',
-        pros: ['Wi-Fi + Bluetooth, application Wallbox', 'Triphasé jusqu\'à 22 kW', 'IP55, très compact (198×201 mm)', 'Compatible recharge solaire en option'],
+        pros: ['Wi-Fi + Bluetooth, application Wallbox', 'IP55, très compact (198×201 mm)', 'Câble 5 m Type 2 inclus', 'Compatible recharge solaire en option'],
         cons: ['Investissement plus élevé'],
+      },
+    ],
+  },
+  murale_tri: {
+    intro: "Avec le triphasé, vous pouvez aller jusqu'à 22 kW — une recharge complète en 1 à 2 heures.",
+    options: [
+      {
+        label: 'Économique',
+        brand: null, model: 'Borne 7.4 kW',
+        icon: '🔌', iconBg: '#f0f2f5', photo: null,
+        power: '7.4 kW', charge: '100 km en ~3 h',
+        price: 'À partir de 490 € TTC',
+        pros: ['Compatible mono et triphasé', 'Prix contenu', 'Recharge quotidienne efficace'],
+        cons: ["Ne profite pas du triphasé disponible", 'Pas de connectivité'],
+      },
+      {
+        label: 'Standard',
+        brand: 'Wallbox', model: 'Pulsar Max 11 kW',
+        icon: '🔌', iconBg: '#e8f2ec', photo: null,
+        power: '11 kW', charge: '100 km en ~2 h',
+        price: 'À partir de 1 350 € TTC',
+        pros: ['Wi-Fi + Bluetooth, application Wallbox', 'IP55, très compact', '2× plus rapide qu\'une borne monophasée', 'Câble 5 m Type 2 inclus'],
+        cons: ['Nécessite une installation triphasée confirmée'],
+      },
+      {
+        label: 'Premium',
+        brand: 'Wallbox', model: 'Pulsar Max 22 kW',
+        icon: '🔌', iconBg: '#e8f2ec', photo: null,
+        power: '22 kW', charge: '100 km en ~1 h',
+        price: 'À partir de 1 490 € TTC',
+        pros: ['Puissance maximale disponible', 'Compatible recharge solaire', 'Future-proof — prêt pour les prochains VE', 'Application Wallbox avancée'],
+        cons: ['Nécessite triphasé confirmé + véhicule compatible 22 kW', 'Investissement plus élevé'],
       },
     ],
   },
@@ -218,39 +240,27 @@ const RESULT_TIERS = {
     options: [
       {
         label: 'Économique',
-        brand: null,
-        model: 'Borne sur pied simple',
-        icon: '🏗️',
-        iconBg: '#eef0f5',
-        photo: null,
-        power: '7.4 kW',
-        charge: '100 km en ~3 h',
+        brand: null, model: 'Borne sur pied simple',
+        icon: '🏗️', iconBg: '#eef0f5', photo: null,
+        power: '7.4 kW', charge: '100 km en ~3 h',
         price: 'Sur devis',
         pros: ['Installation simple et rapide', 'Compatible tous véhicules', 'Entretien minimal'],
         cons: ['Pas de gestion des accès', 'Pas de refacturation automatique'],
       },
       {
         label: 'Standard',
-        brand: null,
-        model: 'Borne collective RFID',
-        icon: '🏗️',
-        iconBg: '#e8ecf5',
-        photo: null,
-        power: '7.4 à 22 kW',
-        charge: '100 km en 1 à 3 h',
+        brand: null, model: 'Borne collective RFID',
+        icon: '🏗️', iconBg: '#e8ecf5', photo: null,
+        power: '7.4 à 22 kW', charge: '100 km en 1 à 3 h',
         price: 'Sur devis',
         pros: ['Accès par badge RFID', 'Supervision à distance', 'Gestion multi-utilisateurs'],
         cons: ['Paramétrage initial nécessaire', 'Abonnement supervision en option'],
       },
       {
         label: 'Premium',
-        brand: null,
-        model: 'Double prise + supervision',
-        icon: '🏗️',
-        iconBg: '#e8ecf5',
-        photo: null,
-        power: '7.4 à 22 kW × 2 sorties',
-        charge: '2 véhicules simultanés',
+        brand: null, model: 'Double prise + supervision',
+        icon: '🏗️', iconBg: '#e8ecf5', photo: null,
+        power: '7.4 à 22 kW × 2 sorties', charge: '2 véhicules simultanés',
         price: 'Sur devis',
         pros: ['2 prises simultanées', 'Refacturation automatique', 'Rapport de consommation', 'Supervision complète'],
         cons: ['Installation plus complexe', 'Investissement plus important'],
@@ -262,39 +272,27 @@ const RESULT_TIERS = {
     options: [
       {
         label: 'Économique',
-        brand: null,
-        model: 'Câble standard 1.8 kW',
-        icon: '🔋',
-        iconBg: '#f5f0e8',
-        photo: null,
-        power: '1.8 kW',
-        charge: '100 km en ~20 h',
+        brand: null, model: 'Câble standard 1.8 kW',
+        icon: '🔋', iconBg: '#f5f0e8', photo: null,
+        power: '1.8 kW', charge: '100 km en ~20 h',
         price: 'À partir de 90 € TTC',
         pros: ['Prix minimal', 'Prise domestique standard', 'Toujours disponible'],
         cons: ['Très lent pour VE 100%', 'Sécurité limitée sur longue durée'],
       },
       {
         label: 'Standard',
-        brand: null,
-        model: 'Câble renforcé 3.7 kW',
-        icon: '🔋',
-        iconBg: '#f5f0e8',
-        photo: null,
-        power: '3.7 kW',
-        charge: '100 km en ~8 h',
+        brand: null, model: 'Câble renforcé 3.7 kW',
+        icon: '🔋', iconBg: '#f5f0e8', photo: null,
+        power: '3.7 kW', charge: '100 km en ~8 h',
         price: 'À partir de 290 € TTC',
         pros: ['2× plus rapide que câble standard', 'Protection thermique intégrée', 'Homologué Mode 2', 'Portable, à emporter partout'],
-        cons: ['Plus lent qu\'une borne fixe', 'Prise renforcée recommandée'],
+        cons: ["Plus lent qu'une borne fixe", 'Prise renforcée recommandée'],
       },
       {
         label: 'Premium',
-        brand: null,
-        model: 'Câble intelligent avec app',
-        icon: '🔋',
-        iconBg: '#f5f0e8',
-        photo: null,
-        power: '3.7 kW',
-        charge: '100 km en ~8 h',
+        brand: null, model: 'Câble intelligent avec app',
+        icon: '🔋', iconBg: '#f5f0e8', photo: null,
+        power: '3.7 kW', charge: '100 km en ~8 h',
         price: 'À partir de 490 € TTC',
         pros: ['Suivi consommation en temps réel', 'Programmation horaire', 'Protection courant résiduel avancée'],
         cons: ['Pas plus rapide que le Standard', 'Application requise pour les fonctions avancées'],
@@ -306,51 +304,44 @@ const RESULT_TIERS = {
     options: [
       {
         label: 'Économique',
-        brand: null,
-        model: 'Borne murale + délestage simple',
-        icon: '☀️',
-        iconBg: '#faf5e0',
-        photo: null,
-        power: '7.4 kW',
-        charge: '100 km en ~3 h',
+        brand: null, model: 'Borne murale + délestage simple',
+        icon: '☀️', iconBg: '#faf5e0', photo: null,
+        power: '7.4 kW', charge: '100 km en ~3 h',
         price: 'À partir de 1 290 € TTC',
         pros: ['Priorité sur surplus solaire', 'Installation simple', 'Compatible installation existante'],
         cons: ['Pas de supervision énergétique avancée', 'Optimisation limitée'],
       },
       {
         label: 'Standard',
-        brand: 'Wallbox',
-        model: 'Pulsar Max + EMS',
-        icon: '☀️',
-        iconBg: '#f5f2e0',
-        photo: null,
-        power: '7.4 / 11 / 22 kW',
-        charge: 'Modulée selon production',
+        brand: 'Wallbox', model: 'Pulsar Max + EMS',
+        icon: '☀️', iconBg: '#f5f2e0', photo: null,
+        power: '7.4 / 11 / 22 kW', charge: 'Modulée selon production',
         price: 'À partir de 1 890 € TTC',
         pros: ['Recharge modulée en temps réel', 'Application Wallbox + supervision 6 mois', 'Complément réseau automatique', 'IP55, compact'],
-        cons: ['Triphasé requis pour 22 kW', 'Compteur externe pour certaines fonctions'],
+        cons: ['Triphasé requis pour 11/22 kW', 'Compteur externe pour certaines fonctions'],
       },
       {
         label: 'Premium',
-        brand: null,
-        model: 'Solution intégrée complète',
-        icon: '☀️',
-        iconBg: '#f0edd8',
-        photo: null,
-        power: '7.4 à 22 kW modulés',
-        charge: 'Optimisation solaire totale',
+        brand: null, model: 'Solution intégrée complète',
+        icon: '☀️', iconBg: '#f0edd8', photo: null,
+        power: '7.4 à 22 kW modulés', charge: 'Optimisation solaire totale',
         price: 'Sur devis',
         pros: ['Audit énergétique inclus', 'Supervision annuelle', 'Tout-en-un : panneaux + borne + gestion'],
-        cons: ['Investissement initial plus élevé', 'Délai d\'installation plus long'],
+        cons: ["Investissement initial plus élevé", "Délai d'installation plus long"],
       },
     ],
   },
 };
 
 function getHighlightedTier(rec, answers) {
-  const { usage, vehicule } = answers;
-  if (rec === 'murale') {
-    if (vehicule === 've' && (usage === 'intensif' || usage === 'regulier')) return 2;
+  const { vehicule } = answers;
+  if (rec === 'murale_mono') {
+    if (vehicule === 've') return 2;
+    if (vehicule === 'phev') return 0;
+    return 1;
+  }
+  if (rec === 'murale_tri') {
+    if (vehicule === 've') return 2;
     return 1;
   }
   return 1;
@@ -359,22 +350,30 @@ function getHighlightedTier(rec, answers) {
 // ── Questionnaire component ───────────────────────────────────────────────
 function Questionnaire() {
   const [phase, setPhase]     = React.useState('entry');
-  const [step, setStep]       = React.useState(0);
+  const [stepId, setStepId]   = React.useState('stationnement');
+  const [history, setHistory] = React.useState([]);
   const [answers, setAnswers] = React.useState({});
   const [rec, setRec]         = React.useState(null);
   const [busy, setBusy]       = React.useState(false);
 
-  const current = STEPS[step];
+  const current  = STEPS.find(s => s.id === stepId);
+  const stepNum  = history.length + 1;
+  const MAX_STEPS = 4;
 
   const handleStart = () => setPhase('quiz');
 
   const handleSelect = (value) => {
     if (busy) return;
     setBusy(true);
-    const newAnswers = { ...answers, [current.id]: value };
+    const newAnswers = { ...answers, [stepId]: value };
     setAnswers(newAnswers);
-    if (step < STEPS.length - 1) {
-      setTimeout(() => { setStep(s => s + 1); setBusy(false); }, 240);
+    const nextId = getNextStepId(stepId, newAnswers);
+    if (nextId) {
+      setTimeout(() => {
+        setHistory(h => [...h, stepId]);
+        setStepId(nextId);
+        setBusy(false);
+      }, 240);
     } else {
       const r = getRecommendation(newAnswers);
       setRec(r);
@@ -383,17 +382,22 @@ function Questionnaire() {
   };
 
   const handleBack = () => {
-    if (step > 0) setStep(s => s - 1);
-    else setPhase('entry');
+    if (history.length === 0) {
+      setPhase('entry');
+    } else {
+      const prevId = history[history.length - 1];
+      setHistory(h => h.slice(0, -1));
+      setStepId(prevId);
+    }
   };
 
   const handleReset = () => {
-    setStep(0);
+    setStepId('stationnement');
+    setHistory([]);
     setAnswers({});
     setRec(null);
     setPhase('entry');
   };
-
 
   return (
     <section className="quiz-section" id="choisir">
@@ -408,7 +412,7 @@ function Questionnaire() {
                 Trouvez votre borne en 2 minutes
               </h2>
               <p className="lede">
-                5 questions sur votre logement, votre véhicule et vos habitudes.
+                4 questions sur votre logement, votre installation et votre véhicule.
                 On vous recommande exactement la solution qu'il vous faut.
               </p>
               <button className="btn btn-accent quiz-cta" onClick={handleStart}>
@@ -431,14 +435,14 @@ function Questionnaire() {
           <div className="quiz-active">
             <div className="quiz-nav">
               <button className="quiz-back-btn" onClick={handleBack}>
-                ← {step === 0 ? 'Annuler' : 'Retour'}
+                ← {history.length === 0 ? 'Annuler' : 'Retour'}
               </button>
-              <span className="quiz-step-count">{step + 1} / {STEPS.length}</span>
+              <span className="quiz-step-count">{stepNum} / {MAX_STEPS}</span>
             </div>
 
             <div className="quiz-prog">
-              {STEPS.map((_, i) => (
-                <div key={i} className={`quiz-prog-seg${i < step ? ' past' : i === step ? ' active' : ''}`}></div>
+              {Array.from({ length: MAX_STEPS }).map((_, i) => (
+                <div key={i} className={`quiz-prog-seg${i < history.length ? ' past' : i === history.length ? ' active' : ''}`}></div>
               ))}
             </div>
 
@@ -451,7 +455,7 @@ function Questionnaire() {
               {current.options.map((opt) => (
                 <button
                   key={opt.value}
-                  className={`quiz-card${answers[current.id] === opt.value ? ' selected' : ''}`}
+                  className={`quiz-card${answers[stepId] === opt.value ? ' selected' : ''}`}
                   onClick={() => handleSelect(opt.value)}
                 >
                   <span className="qc-icon">{opt.icon}</span>
@@ -468,7 +472,7 @@ function Questionnaire() {
           <div className="quiz-result">
             <div className="qr-header">
               <div className="eyebrow">Résultat personnalisé</div>
-              <h2 className="h-1" style={{ marginTop: 12 }}>Trois options pour votre situation</h2>
+              <h2 className="h-1" style={{ marginTop: 12 }}>Trois gammes pour votre situation</h2>
               <p className="quiz-result-intro">{RESULT_TIERS[rec].intro}</p>
             </div>
 
@@ -509,6 +513,17 @@ function Questionnaire() {
                 );
               })}
             </div>
+
+            {answers.solaire === 'non' && (
+              <div className="qr-solar-upsell">
+                <span className="solar-upsell-icon">☀️</span>
+                <div className="solar-upsell-body">
+                  <strong>Vous pensez à l'énergie solaire ?</strong>
+                  <p>On installe aussi les panneaux. Rechargez votre voiture avec votre propre production et divisez votre coût de recharge par 3.</p>
+                </div>
+                <a href="#contact" className="btn btn-ghost solar-upsell-cta">Découvrir l'offre solaire →</a>
+              </div>
+            )}
 
             <div className="qr-bottom-row">
               <a href="tel:0652916578" className="btn btn-ghost">📞 Prendre RDV</a>
