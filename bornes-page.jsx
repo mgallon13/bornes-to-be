@@ -350,14 +350,18 @@ function CatalogueSection() {
         <div className="prod-grid">
           {Object.values(PRODUCTS).map((p) => (
             <article key={p.id} className="prod-card reveal">
-              <div className="prod-visual" style={{ background: p.iconBg }}>
-                <span className="prod-visual-icon">{p.icon}</span>
+              <div className="prod-visual" style={p.photo ? {} : { background: p.iconBg }}>
+                {p.photo
+                  ? <img src={p.photo} alt={`${p.brand || ''} ${p.model || p.name}`} className="prod-photo" />
+                  : <span className="prod-visual-icon">{p.icon}</span>
+                }
               </div>
               <div className="prod-body">
                 <div className="prod-meta-row">
                   <span className="prod-tag">{p.tag}</span>
                 </div>
                 <h3 className="prod-name">{p.name}</h3>
+                {p.brand && <p className="prod-model-ref">{p.brand} {p.model}</p>}
                 <p className="prod-ideal">{p.ideal}</p>
                 <div className="prod-specs-row">
                   <div><span className="spec-lbl">Puissance</span><span className="spec-val">{p.power}</span></div>
