@@ -489,7 +489,7 @@ const RESULT_TIERS = {
       {
         label: 'Professionnel',
         brand: 'Schneider', model: 'Charge Pro OCPP',
-        visualType: 'solaire', iconBg: '#e8ecf5', photo: 'https://www.e-planetelec.fr/95265-large_default/borne-de-recharge-charge-pro-de-74-a-22-kw-1p-3p-schneider-electric-evb4s22n40mg.jpg',
+        visualType: 'solaire', iconBg: '#e8ecf5', photo: 'img/bornes/schneider-charge-pro.jpg',
         power: '7,4 / 11 / 22 kW', charge: 'Supervision complète',
         price: 'Sur devis installateur',
         pros: [
