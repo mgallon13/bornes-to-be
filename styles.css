@@ -925,3 +925,49 @@ button { font-family: inherit; }
 @media (max-width: 400px) {
   .hero-content .h-display { font-size: 32px; }
 }
+
+/* === Theme : fond blanc uniforme + bleu ciel === */
+
+/* Surlignage des titres en bleu ciel (au lieu du jaune) */
+.card .body .ttl .mark {
+  background-image: none;
+  background-color: rgba(14, 165, 233, 0.16);
+  border-radius: 3px;
+  color: inherit;
+}
+
+/* Section contact en blanc (aucune differenciation de fond) */
+.contact { background: var(--bg); color: var(--fg); }
+.contact .h-1 { color: var(--fg); }
+.contact .eyebrow { color: var(--fg-muted); }
+.contact .lede { color: var(--fg-soft); }
+.contact .reach a { border-top-color: var(--line); }
+.contact .reach a:last-child { border-bottom-color: var(--line); }
+.contact .reach .k { color: var(--fg-muted); }
+.contact .form { background: #f0f9ff; border-color: var(--line); }
+.contact .form label { color: var(--fg-muted); }
+.contact .form input, .contact .form select, .contact .form textarea { color: var(--fg); border-bottom-color: var(--line-strong); }
+.contact .form .seg-opt { border-color: var(--line-strong); color: var(--fg); }
+.contact .form .seg-opt.active { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.contact .form .submit-row { border-top-color: var(--line); }
+.contact .form .submit-row .small { color: var(--fg-muted); }
+.contact .form button[type="submit"] { background: var(--accent); color: var(--accent-ink); }
+.contact .form .success { color: var(--fg); }
+
+/* Offre featured : carte claire bleu ciel */
+.offre.featured { background: #f0f9ff; color: var(--fg); border-color: var(--accent); }
+.offre.featured .desc { color: var(--fg-soft); }
+.offre.featured .price-from, .offre.featured .price small, .offre.featured .tag { color: var(--fg-muted); }
+.offre.featured ul li { color: var(--fg-soft); }
+
+/* Les infos ressortent : cartes avec ombre + halo bleu au survol */
+.card, .prod-card, .qrt-card { box-shadow: 0 1px 2px rgba(15,23,42,.04), 0 8px 24px rgba(15,23,42,.05); }
+.card:hover { box-shadow: 0 12px 36px rgba(14,165,233,.16); border-color: color-mix(in srgb, var(--accent) 40%, transparent); }
+.prod-card:hover { box-shadow: 0 16px 40px rgba(14,165,233,.18); border-color: color-mix(in srgb, var(--accent) 45%, transparent); }
+
+/* Titres Inter un peu plus presents */
+.h-display, .h-1, .h-2, .h-3, .quiz-q, .qr-name, .prod-name, .offre h3, .card .body .ttl { font-weight: 600; }
+
+/* Visuel blueprint des bornes */
+.borne-bp { width: 100%; height: 100%; display: block; }
+.borne-bp .bp-flow { filter: drop-shadow(0 0 3px var(--accent)); }

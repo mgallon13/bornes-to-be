@@ -7,14 +7,17 @@ const ACCENT_PRESETS = {
   orange: "#c2410c",
   mono: "#1a1a1a",
   or: "#ca8a04",
-  bleu: "#2563eb"
+  bleu: "#2563eb",
+  ciel: "#0ea5e9"
 };
 
 const BG_PRESETS = {
   warm: { bg: "#f5f4f0", bg2: "#ebeae5", fg: "#0a0a0a" },
   cool: { bg: "#f1f3f5", bg2: "#e7eaec", fg: "#0a0a0a" },
   pure: { bg: "#ffffff", bg2: "#f5f5f5", fg: "#0a0a0a" },
-  dark: { bg: "#0c0c0c", bg2: "#1a1a1a", fg: "#f5f4f0" }
+  dark: { bg: "#0c0c0c", bg2: "#1a1a1a", fg: "#f5f4f0" },
+  nuit: { bg: "#17273f", bg2: "#213353", fg: "#eef2f7" },
+  blanc: { bg: "#ffffff", bg2: "#ffffff", fg: "#0a0a0a" }
 };
 
 const FONT_PRESETS = {
@@ -44,12 +47,12 @@ function applyTokens(t) {
   root.setProperty('--bg-2', bg.bg2);
   root.setProperty('--fg', bg.fg);
   // muted/soft/line derived from fg
-  const isDark = t.bgTone === 'dark';
+  const isDark = t.bgTone === 'dark' || t.bgTone === 'nuit';
   if (isDark) {
-    root.setProperty('--fg-muted', 'rgba(245, 244, 240, 0.55)');
-    root.setProperty('--fg-soft', 'rgba(245, 244, 240, 0.78)');
-    root.setProperty('--line', 'rgba(245, 244, 240, 0.10)');
-    root.setProperty('--line-strong', 'rgba(245, 244, 240, 0.18)');
+    root.setProperty('--fg-muted', 'rgba(238, 242, 247, 0.55)');
+    root.setProperty('--fg-soft', 'rgba(238, 242, 247, 0.80)');
+    root.setProperty('--line', 'rgba(238, 242, 247, 0.12)');
+    root.setProperty('--line-strong', 'rgba(238, 242, 247, 0.22)');
   } else {
     root.setProperty('--fg-muted', 'rgba(10, 10, 10, 0.58)');
     root.setProperty('--fg-soft', 'rgba(10, 10, 10, 0.78)');

@@ -23,12 +23,12 @@ function BornesPageHeader() {
         </div>
         <div className="stats">
           <div>
-            <div className="n">4 solutions</div>
-            <div className="l">Murale, sur pied, portable, intégrée solaire.</div>
+            <div className="n">10 bornes</div>
+            <div className="l">Sélectionnées et testées pour le marché français.</div>
           </div>
           <div>
-            <div className="n">1.8 → 22 kW</div>
-            <div className="l">Puissance ajustée à votre tableau et votre véhicule.</div>
+            <div className="n">TVA 5,5 %</div>
+            <div className="l">Sur fourniture et pose par installateur certifié IRVE.</div>
           </div>
           <div>
             <div className="n">IRVE niv. 2</div>
@@ -40,6 +40,108 @@ function BornesPageHeader() {
   );
 }
 
+// ── Visuels blueprint colores (flux de charge anime) ───────────────────────
+function BpFlow({ path, dur = '2.6s', color = '#22c55e' }) {
+  return (
+    <circle r="3.4" fill={color} className="bp-flow">
+      <animateMotion dur={dur} repeatCount="indefinite" path={path} />
+      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.82;1"
+               dur={dur} repeatCount="indefinite" />
+    </circle>
+  );
+}
+
+function BorneVisual({ type }) {
+  if (type === 'pied') {
+    const cable = "M67 66 C 71 80, 78 82, 80 94";
+    return (
+      <svg viewBox="0 0 120 120" className="borne-bp" role="img" aria-label="Borne sur pied">
+        <defs><linearGradient id="p-body" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#ffffff" /><stop offset="1" stopColor="#dde9f4" /></linearGradient></defs>
+        <ellipse cx="60" cy="106" rx="30" ry="6" fill="#e2e8f0" />
+        <rect x="44" y="20" width="32" height="84" rx="11" fill="url(#p-body)" stroke="#0284c7" strokeWidth="2.4" />
+        <rect x="50" y="28" width="20" height="24" rx="4" fill="#0c2740" />
+        <rect x="53" y="44" width="14" height="3.4" rx="1.7" fill="#15324a" />
+        <rect x="53" y="44" width="6" height="3.4" rx="1.7" fill="#22c55e">
+          <animate attributeName="width" values="3;14;3" dur="3s" repeatCount="indefinite" /></rect>
+        <path d="M61 31 l-4 6 h2.8 l-1.8 5 5.4 -7 h-3 z" fill="#fbbf24" />
+        <circle cx="53" cy="62" r="4" fill="#dbeafe" stroke="#0284c7" strokeWidth="1.8" />
+        <circle cx="67" cy="62" r="4" fill="#dbeafe" stroke="#0284c7" strokeWidth="1.8" />
+        <circle cx="53" cy="62" r="1.6" fill="#22c55e" /><circle cx="67" cy="62" r="1.6" fill="#22c55e" />
+        <path d="M53 66 C 49 80, 42 82, 40 94" fill="none" stroke="#38bdf8" strokeWidth="2.6" strokeLinecap="round" opacity="0.7" />
+        <path d={cable} fill="none" stroke="#0ea5e9" strokeWidth="2.8" strokeLinecap="round" />
+        <BpFlow path={cable} />
+      </svg>
+    );
+  }
+  if (type === 'portable') {
+    const cable = "M22 34 C 46 16, 58 56, 60 70 C 62 84, 74 100, 98 86";
+    return (
+      <svg viewBox="0 0 120 120" className="borne-bp" role="img" aria-label="Cable portable">
+        <path d={cable} fill="none" stroke="#0ea5e9" strokeWidth="3" strokeLinecap="round" />
+        <rect x="14" y="27" width="14" height="14" rx="3" fill="#e2edf6" stroke="#0284c7" strokeWidth="2" />
+        <circle cx="18.5" cy="34" r="1.4" fill="#0284c7" /><circle cx="23.5" cy="34" r="1.4" fill="#0284c7" />
+        <rect x="50" y="60" width="20" height="20" rx="5" fill="#0c2740" />
+        <circle cx="60" cy="67" r="2.4" fill="#22c55e"><animate attributeName="opacity" values="1;.3;1" dur="1.6s" repeatCount="indefinite" /></circle>
+        <rect x="54" y="73" width="12" height="2.6" rx="1.3" fill="#15324a" />
+        <rect x="90" y="80" width="16" height="13" rx="4" fill="#e2edf6" stroke="#0284c7" strokeWidth="2" />
+        <circle cx="98" cy="86.5" r="2.2" fill="#22c55e" />
+        <BpFlow path={cable} dur="3s" />
+      </svg>
+    );
+  }
+  if (type === 'solaire') {
+    return (
+      <svg viewBox="0 0 120 120" className="borne-bp" role="img" aria-label="Borne solaire">
+        <defs>
+          <radialGradient id="s-sun" cx="0.5" cy="0.5" r="0.5">
+            <stop offset="0" stopColor="#fde68a" /><stop offset="1" stopColor="#f59e0b" /></radialGradient>
+          <linearGradient id="s-panel" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stopColor="#1d4ed8" /><stop offset="1" stopColor="#0c2740" /></linearGradient>
+        </defs>
+        <g>
+          <circle cx="30" cy="30" r="11" fill="url(#s-sun)" />
+          <g stroke="#f59e0b" strokeWidth="2.2" strokeLinecap="round">
+            <path d="M30 13 V8" /><path d="M30 52 V47" /><path d="M13 30 H8" /><path d="M47 30 H52" />
+            <path d="M18 18 L14 14" /><path d="M42 18 L46 14" /><path d="M18 42 L14 46" /></g>
+          <animateTransform attributeName="transform" type="rotate" from="0 30 30" to="360 30 30" dur="20s" repeatCount="indefinite" />
+        </g>
+        <path d="M52 30 L96 30 L90 52 L46 52 Z" fill="url(#s-panel)" stroke="#0284c7" strokeWidth="1.6" />
+        <path d="M62 30 L56 52 M72 30 L66 52 M82 30 L76 52" stroke="#60a5fa" strokeWidth="1.2" opacity="0.7" />
+        <path d="M49 41 L91 41" stroke="#60a5fa" strokeWidth="1.2" opacity="0.7" />
+        <rect x="72" y="64" width="28" height="40" rx="7" fill="#ffffff" stroke="#0284c7" strokeWidth="2.4" />
+        <rect x="78" y="70" width="16" height="11" rx="2.5" fill="#0c2740" />
+        <rect x="80" y="76" width="12" height="2.6" rx="1.3" fill="#22c55e">
+          <animate attributeName="width" values="3;12;3" dur="3s" repeatCount="indefinite" /></rect>
+        <circle cx="86" cy="90" r="2.6" fill="#22c55e" />
+        <BpFlow path="M40 38 C 56 58, 64 60, 80 70" color="#f59e0b" />
+      </svg>
+    );
+  }
+  const cable = "M59 72 C 59 92, 84 86, 95 96";
+  return (
+    <svg viewBox="0 0 120 120" className="borne-bp" role="img" aria-label="Borne murale">
+      <defs><linearGradient id="m-body" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stopColor="#ffffff" /><stop offset="1" stopColor="#e2edf6" /></linearGradient></defs>
+      <rect x="14" y="14" width="13" height="92" rx="3" fill="#eef2f6" />
+      <rect x="25" y="40" width="12" height="6" rx="2" fill="#cbd5e1" />
+      <rect x="34" y="24" width="50" height="58" rx="11" fill="url(#m-body)" stroke="#0284c7" strokeWidth="2.4" />
+      <rect x="42" y="32" width="34" height="22" rx="4" fill="#0c2740" />
+      <rect x="46" y="36" width="12" height="7" rx="1.5" fill="none" stroke="#7dd3fc" strokeWidth="1.4" />
+      <rect x="58.4" y="38" width="1.6" height="3" fill="#7dd3fc" />
+      <path d="M67 33 l-5 7 h3.4 l-2.2 6 6.5 -8 h-3.6 z" fill="#fbbf24" />
+      <rect x="46" y="47" width="26" height="4" rx="2" fill="#15324a" />
+      <rect x="46" y="47" width="8" height="4" rx="2" fill="#22c55e">
+        <animate attributeName="width" values="4;26;4" dur="3s" repeatCount="indefinite" /></rect>
+      <circle cx="59" cy="64" r="3" fill="#22c55e">
+        <animate attributeName="opacity" values="1;0.3;1" dur="1.8s" repeatCount="indefinite" /></circle>
+      <path d={cable} fill="none" stroke="#0ea5e9" strokeWidth="3.2" strokeLinecap="round" />
+      <rect x="88" y="92" width="16" height="12" rx="4" fill="#e2edf6" stroke="#0284c7" strokeWidth="2" />
+      <circle cx="96" cy="98" r="2.2" fill="#22c55e" />
+      <BpFlow path={cable} />
+    </svg>
+  );
+}
 // ── Products data ─────────────────────────────────────────────────────────
 const PRODUCTS = {
   murale: {
@@ -540,7 +642,7 @@ function Questionnaire() {
 // ── Catalogue ─────────────────────────────────────────────────────────────
 function CatalogueSection() {
   return (
-    <section className="section" id="catalogue" style={{ background: 'var(--bg-2)' }}>
+    <section className="section" id="catalogue" style={{ background: '#f0f9ff' }}>
       <div className="wrap">
         <SecHeader
           eyebrow="Catalogue"
@@ -550,10 +652,10 @@ function CatalogueSection() {
         <div className="prod-grid">
           {Object.values(PRODUCTS).map((p) => (
             <article key={p.id} className="prod-card reveal">
-              <div className="prod-visual" style={p.photo ? {} : { background: p.iconBg }}>
+              <div className="prod-visual" style={p.photo ? {} : { background: '#eaf6fd' }}>
                 {p.photo
                   ? <img src={p.photo} alt={`${p.brand || ''} ${p.model || p.name}`} className="prod-photo" />
-                  : <span className="prod-visual-icon">{p.icon}</span>
+                  : <BorneVisual type={p.id} />
                 }
               </div>
               <div className="prod-body">
