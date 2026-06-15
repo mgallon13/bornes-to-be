@@ -354,7 +354,7 @@ const RESULT_TIERS = {
       {
         label: 'Recommandé',
         brand: 'Schneider', model: 'Charge 11/22 kW TIC',
-        visualType: 'murale', iconBg: '#e8ecf5', photo: 'https://www.e-planetelec.fr/93028-large_default/borne-de-recharge-pour-vehicule-electrique-74-11-22kw-1p-3p-tic-16-32a-capteur-rdc-dd-schneider-electric-evh5a22n400f.jpg',
+        visualType: 'murale', iconBg: '#e8ecf5', photo: 'img/bornes/schneider-charge-tic.jpg',
         power: '7,4 / 11 / 22 kW (param.)', charge: '100 km en 1 à 3 h',
         price: 'Sur devis installateur',
         pros: [
