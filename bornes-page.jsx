@@ -342,7 +342,7 @@ const RESULT_TIERS = {
       {
         label: 'Essentiel',
         brand: 'Autel', model: 'MaxiCharger AC',
-        visualType: 'murale', iconBg: '#f0f2f5', photo: 'https://strapicdn.autelenergy.com/autel_energy/media/1_5af7c70aca.jpg',
+        visualType: 'murale', iconBg: '#f0f2f5', photo: 'img/bornes/autel-maxicharger-ac.jpg',
         power: '11 / 22 kW triphasé', charge: '100 km en ~1-2 h',
         price: 'Sur devis installateur',
         pros: [
