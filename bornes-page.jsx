@@ -465,7 +465,7 @@ const RESULT_TIERS = {
       {
         label: 'Standard',
         brand: 'V2C', model: 'Trydan 7,4/22 kW',
-        visualType: 'solaire', iconBg: '#f0f8e8', photo: null,
+        visualType: 'solaire', iconBg: '#f0f8e8', photo: 'https://v2charge.com/wp-content/uploads/2022/07/trydan-v2c.jpg',
         power: '7,4 / 22 kW modulé', charge: 'Priorité surplus solaire',
         price: 'Sur devis installateur',
         pros: [
