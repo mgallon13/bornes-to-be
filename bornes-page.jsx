@@ -14,7 +14,7 @@ function BornesPageHeader() {
           La borne dépend de votre situation, pas de notre stock.
         </h1>
         <p className="lede" style={{ marginTop: 24 }}>
-          Répondez à 5 questions — on vous dit quelle solution correspond exactement
+          Répondez à 6 questions — on vous dit quelle solution correspond exactement
           à votre logement, votre installation et vos habitudes.
         </p>
         <div style={{ display: 'flex', gap: 14, marginTop: 36 }}>
