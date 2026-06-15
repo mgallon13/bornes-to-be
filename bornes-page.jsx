@@ -266,10 +266,11 @@ function getNextStepId(currentId, newAnswers) {
   }
   if (currentId === 'installation') return 'solaire';
   if (currentId === 'solaire') {
-    if (newAnswers.solaire === 'oui') return null;
+    if (newAnswers.solaire === 'oui') return 'frequence'; // solaire → fréquence directement (pas de véhicule)
     return 'vehicule';
   }
-  return null; // vehicule → result
+  if (currentId === 'vehicule') return 'frequence';
+  return null; // frequence → result
 }
 
 function getRecommendation(answers) {
