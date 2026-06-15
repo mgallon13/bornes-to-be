@@ -142,6 +142,7 @@ function AccueilApp() {
       <main>
         <Hero variant={t.heroVariant} />
         <Trust />
+        <TvaBanner />
         <BornesSection cardStyle={t.cardStyle} />
         <SolarSection variant={t.solarVariant} />
         <ContactSection />
