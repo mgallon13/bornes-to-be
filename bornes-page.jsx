@@ -503,19 +503,28 @@ const RESULT_TIERS = {
 };
 
 function getHighlightedTier(rec, answers) {
-  const { vehicule, frequence } = answers;
+  const { vehicule, frequence, km_jour } = answers;
 
-  // Pied / portable : fréquence ne change pas le type de solution
+  // Pied / portable : usage déterminé, pas de graduation par puissance
   if (rec === 'pied' || rec === 'portable') return 1;
 
-  // Fréquence → puissance directement
-  const freqTier = { quotidienne: 2, reguliere: 1, occasionnelle: 0 };
-  let tier = freqTier[frequence] ?? 1;
+  // Score combiné fréquence + km/jour → puissance recommandée
+  let score = 0;
+  if (frequence === 'quotidienne')   score += 2;
+  else if (frequence === 'reguliere') score += 1;
 
-  // PHEV : petite batterie, pas besoin de puissance premium
+  if (km_jour === 'plus80')          score += 2;
+  else if (km_jour === 'entre30et80') score += 1;
+
+  // score 0-1 → Essentiel, 2-3 → Recommandé, 4 → Premium
+  let tier;
+  if (score >= 4) tier = 2;
+  else if (score >= 2) tier = 1;
+  else tier = 0;
+
+  // PHEV : petite batterie, premium inutile
   if (vehicule === 'phev') tier = Math.min(tier, 1);
-
-  // Pas encore électrique : planning, le recommandé suffit
+  // Pas encore électrique : planning, recommandé suffit
   if (vehicule === 'bientot') tier = Math.min(tier, 1);
 
   return tier;
