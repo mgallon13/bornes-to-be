@@ -246,6 +246,16 @@ const STEPS = [
       { value: 'bientot', icon: '🚗', label: 'Pas encore électrique', desc: "J'anticipe le passage au VE" },
     ],
   },
+  {
+    id: 'frequence',
+    question: 'À quelle fréquence rechargez-vous ?',
+    hint: "Plus la fréquence est élevée, plus la puissance de votre borne doit l'être aussi.",
+    options: [
+      { value: 'quotidienne',  icon: '📅', label: 'Tous les jours',              desc: 'Trajet domicile-travail quotidien' },
+      { value: 'reguliere',    icon: '🔄', label: 'Plusieurs fois par semaine',  desc: '3 à 5 fois par semaine en moyenne' },
+      { value: 'occasionnelle',icon: '🌙', label: 'Occasionnelle',              desc: 'Week-ends ou grandes distances seulement' },
+    ],
+  },
 ];
 
 function getNextStepId(currentId, newAnswers) {
