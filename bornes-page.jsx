@@ -646,16 +646,9 @@ function Questionnaire() {
                       )}
                       <div className="qrt-price">{opt.price}</div>
                       <div className="qrt-power">{opt.power} — {opt.charge}</div>
-                      <div className="qrt-pros-cons">
-                        <ul className="qrt-pros">
-                          {opt.pros.map((p, j) => <li key={j}>{p}</li>)}
-                        </ul>
-                        {opt.cons && opt.cons.length > 0 && (
-                          <ul className="qrt-cons">
-                            {opt.cons.map((c, j) => <li key={j}>{c}</li>)}
-                          </ul>
-                        )}
-                      </div>
+                      <ul className="qrt-pros">
+                        {opt.pros.slice(0, 3).map((p, j) => <li key={j}>{p}</li>)}
+                      </ul>
                       <a href="#contact" className="btn btn-accent qrt-cta">Devis gratuit →</a>
                     </div>
                   </div>
