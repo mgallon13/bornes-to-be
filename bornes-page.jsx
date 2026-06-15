@@ -325,7 +325,7 @@ const RESULT_TIERS = {
       {
         label: 'Premium',
         brand: 'Wallbox', model: 'Pulsar Max 7,4 kW',
-        visualType: 'murale', iconBg: '#e8f5f2', photo: 'https://support.wallbox.com/wp-content/uploads/ht_kb/2025/02/Pulsar-Max-2025-Visual.png',
+        visualType: 'murale', iconBg: '#e8f5f2', photo: 'img/bornes/wallbox-pulsar-max.png',
         power: '7,4 kW monophasé', charge: '100 km en ~3 h',
         price: 'À partir de 829 € TTC',
         pros: [
