@@ -366,7 +366,7 @@ const RESULT_TIERS = {
       {
         label: 'Premium',
         brand: 'Legrand', model: "Green'Up Premium 22 kW",
-        visualType: 'murale', iconBg: '#eeedf5', photo: 'https://assets.legrand.com/pim/PHOTOS-WEB/LG-058002N-WEB-L.jpg',
+        visualType: 'murale', iconBg: '#eeedf5', photo: 'img/bornes/legrand-greenup-premium.jpg',
         power: '22 kW triphasé', charge: '100 km en ~1 h',
         price: '1 200 – 1 500 € via réseau pro',
         pros: [
