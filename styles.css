@@ -886,6 +886,22 @@ button { font-family: inherit; }
   .qr-cta-main { width: 100%; text-align: center; align-self: stretch; justify-content: center; }
 }
 
+/* ── TVA banner ────────────────────────────────────────────────── */
+.tva-banner { background: #e4f5f2; border-top: 1px solid #b0dcd6; border-bottom: 1px solid #b0dcd6; padding: 20px 0; }
+.tva-inner { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+.tva-badge {
+  font-family: var(--font-display); font-size: 22px; font-weight: 600;
+  letter-spacing: -0.02em; color: #0a6b7a; white-space: nowrap;
+  background: rgba(15, 110, 130, 0.12); padding: 8px 18px; border-radius: 8px; flex-shrink: 0;
+}
+.tva-text { flex: 1; font-size: 14.5px; color: var(--fg-soft); min-width: 200px; line-height: 1.5; }
+.tva-text strong { color: var(--fg); display: block; margin-bottom: 2px; font-weight: 600; }
+.tva-cta { white-space: nowrap; flex-shrink: 0; }
+@media (max-width: 640px) {
+  .tva-inner { flex-direction: column; align-items: flex-start; }
+  .tva-cta { width: 100%; text-align: center; }
+}
+
 /* ── Phone calibration ─────────────────────────────────────────── */
 @media (max-width: 640px) {
   :root { --hero-scale: 1; --density: 0.72; }
