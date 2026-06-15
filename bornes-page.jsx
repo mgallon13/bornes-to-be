@@ -251,9 +251,19 @@ const STEPS = [
     question: 'À quelle fréquence rechargez-vous ?',
     hint: "Plus la fréquence est élevée, plus la puissance de votre borne doit l'être aussi.",
     options: [
-      { value: 'quotidienne',  icon: '📅', label: 'Tous les jours',              desc: 'Trajet domicile-travail quotidien' },
-      { value: 'reguliere',    icon: '🔄', label: 'Plusieurs fois par semaine',  desc: '3 à 5 fois par semaine en moyenne' },
-      { value: 'occasionnelle',icon: '🌙', label: 'Occasionnelle',              desc: 'Week-ends ou grandes distances seulement' },
+      { value: 'quotidienne',   icon: '📅', label: 'Tous les jours',             desc: 'Trajet domicile-travail quotidien' },
+      { value: 'reguliere',     icon: '🔄', label: 'Plusieurs fois par semaine', desc: '3 à 5 fois par semaine en moyenne' },
+      { value: 'occasionnelle', icon: '🌙', label: 'Occasionnelle',             desc: 'Week-ends ou grandes distances seulement' },
+    ],
+  },
+  {
+    id: 'km_jour',
+    question: 'Combien de kilomètres roulez-vous par jour ?',
+    hint: 'Votre consommation journalière détermine la puissance de recharge dont vous avez besoin.',
+    options: [
+      { value: 'moins30',     icon: '🏙️', label: 'Moins de 30 km',  desc: 'Trajets courts, usage urbain' },
+      { value: 'entre30et80', icon: '🛣️', label: '30 à 80 km',      desc: 'Trajet domicile-travail classique' },
+      { value: 'plus80',      icon: '🚗', label: 'Plus de 80 km',   desc: 'Longues distances régulières' },
     ],
   },
 ];
