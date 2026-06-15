@@ -635,7 +635,9 @@ function Questionnaire() {
                     <div className="qrt-visual" style={{ background: opt.iconBg }}>
                       {opt.photo
                         ? <img src={opt.photo} alt={opt.model} className="qrt-photo" />
-                        : <span className="qrt-icon">{opt.icon}</span>
+                        : <div style={{ width: 88, height: 88 }}>
+                            <BorneVisual type={opt.visualType || 'murale'} />
+                          </div>
                       }
                     </div>
                     <div className="qrt-body">
