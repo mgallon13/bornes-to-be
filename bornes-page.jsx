@@ -745,7 +745,7 @@ const BORNES_QUESTIONS = [
   },
   {
     q: "Y a-t-il des aides financières disponibles ?",
-    a: "Oui. Crédit d'impôt à 75 % pour les particuliers en résidence principale (plafonné à 300 € par véhicule). Prime ADVENIR pour les copropriétés. On vous indique ce à quoi vous avez droit directement dans le devis."
+    a: "Oui. La TVA est réduite à 5,5 % (au lieu de 20 %) sur la fourniture et la pose de votre borne, dès lors que l'installation est réalisée par un installateur certifié IRVE — c'est notre cas. Prime ADVENIR disponible pour les copropriétés. Le crédit d'impôt de 500 € a été supprimé fin 2025 et n'est plus disponible."
   },
   {
     q: "La borne fonctionne-t-elle avec tous les VE ?",
