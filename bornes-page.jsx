@@ -477,7 +477,7 @@ const RESULT_TIERS = {
       {
         label: 'Recommandé',
         brand: 'myenergi', model: 'Zappi v2.1',
-        visualType: 'solaire', iconBg: '#e8f5f0', photo: null,
+        visualType: 'solaire', iconBg: '#e8f5f0', photo: 'https://www.myenergi.com/wp-content/uploads/2022/02/zappiMultiphase_ContentSuite_v1-B-1-768x801.jpg',
         power: '7,4 / 22 kW modulé', charge: 'Modes Eco / Eco+ / Full',
         price: '~1 000 € HT',
         pros: [
