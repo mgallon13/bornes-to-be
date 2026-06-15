@@ -492,17 +492,22 @@ const RESULT_TIERS = {
 };
 
 function getHighlightedTier(rec, answers) {
-  const { vehicule } = answers;
-  if (rec === 'murale_mono') {
-    if (vehicule === 've') return 2;
-    if (vehicule === 'phev') return 0;
-    return 1;
-  }
-  if (rec === 'murale_tri') {
-    if (vehicule === 've') return 2;
-    return 1;
-  }
-  return 1;
+  const { vehicule, frequence } = answers;
+
+  // Pied / portable : fréquence ne change pas le type de solution
+  if (rec === 'pied' || rec === 'portable') return 1;
+
+  // Fréquence → puissance directement
+  const freqTier = { quotidienne: 2, reguliere: 1, occasionnelle: 0 };
+  let tier = freqTier[frequence] ?? 1;
+
+  // PHEV : petite batterie, pas besoin de puissance premium
+  if (vehicule === 'phev') tier = Math.min(tier, 1);
+
+  // Pas encore électrique : planning, le recommandé suffit
+  if (vehicule === 'bientot') tier = Math.min(tier, 1);
+
+  return tier;
 }
 
 // ── Questionnaire component ───────────────────────────────────────────────
