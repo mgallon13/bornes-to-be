@@ -668,7 +668,7 @@ function Questionnaire() {
                       {isRec && <div className="qrt-rec-label">Recommandé</div>}
                       <div className="qrt-tier-badge">{opt.label}</div>
                     </div>
-                    <div className="qrt-visual" style={{ background: opt.iconBg }}>
+                    <div className="qrt-visual" style={{ background: opt.photo ? '#fff' : opt.iconBg }}>
                       {opt.photo
                         ? <img src={opt.photo} alt={opt.model} className="qrt-photo" />
                         : <div style={{ width: 88, height: 88 }}>
