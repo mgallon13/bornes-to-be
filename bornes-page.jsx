@@ -280,7 +280,8 @@ function getNextStepId(currentId, newAnswers) {
     return 'vehicule';
   }
   if (currentId === 'vehicule') return 'frequence';
-  return null; // frequence → result
+  if (currentId === 'frequence') return 'km_jour';
+  return null; // km_jour → result
 }
 
 function getRecommendation(answers) {
