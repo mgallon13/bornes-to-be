@@ -532,7 +532,7 @@ function Questionnaire() {
 
   const current  = STEPS.find(s => s.id === stepId);
   const stepNum  = history.length + 1;
-  const MAX_STEPS = 5;
+  const MAX_STEPS = 6;
 
   const handleStart = () => setPhase('quiz');
 
