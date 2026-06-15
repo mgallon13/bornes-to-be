@@ -313,7 +313,7 @@ const RESULT_TIERS = {
       {
         label: 'Recommandé',
         brand: 'Hager', model: 'witty one 7,4 kW TIC',
-        visualType: 'murale', iconBg: '#ecf2f8', photo: 'https://assets.hager.com/step-content/P/HA_47623097/09/std.lang.all/XVR107S.webp',
+        visualType: 'murale', iconBg: '#ecf2f8', photo: 'img/bornes/hager-witty-one.webp',
         power: '7,4 kW monophasé', charge: '100 km en ~3 h',
         price: 'À partir de 985 € TTC',
         pros: [
