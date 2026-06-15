@@ -686,8 +686,8 @@ function CatalogueSection() {
       <div className="wrap">
         <SecHeader
           eyebrow="Catalogue"
-          title="Quatre solutions, quatre situations."
-          lede="Chaque produit répond à un contexte précis. Pas sûr ? Utilisez le questionnaire ci-dessus."
+          title="Les bornes que nous recommandons."
+          lede="Fiabilité, SAV France et rapport qualité/prix — les critères qui ont guidé notre sélection. Utilisez le questionnaire pour trouver votre modèle."
         />
         <div className="prod-grid">
           {Object.values(PRODUCTS).map((p) => (
