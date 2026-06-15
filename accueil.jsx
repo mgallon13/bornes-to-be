@@ -495,7 +495,25 @@ function ContactSection() {
 
 }
 
+// ── TVA banner ────────────────────────────────────────────────────────────
+function TvaBanner() {
+  return (
+    <div className="tva-banner">
+      <div className="wrap">
+        <div className="tva-inner">
+          <div className="tva-badge">TVA 5,5 %</div>
+          <div className="tva-text">
+            <strong>Avantage fiscal sur votre installation.</strong>
+            Fourniture et pose de votre borne par un installateur certifié IRVE : TVA réduite à 5,5 % au lieu de 20 %.
+          </div>
+          <a href="#contact" className="btn btn-ghost tva-cta">Obtenir mon devis →</a>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 Object.assign(window, {
-  Hero, Trust, SolarSection, BornesSection, ClientsSection, ContactSection,
+  Hero, Trust, TvaBanner, SolarSection, BornesSection, ClientsSection, ContactSection,
   PHONE
 });
