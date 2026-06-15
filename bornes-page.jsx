@@ -301,7 +301,7 @@ const RESULT_TIERS = {
       {
         label: 'Essentiel',
         brand: 'Tesla', model: 'Wall Connector Gen 3',
-        visualType: 'murale', iconBg: '#e8f2f5', photo: null,
+        visualType: 'murale', iconBg: '#e8f2f5', photo: 'https://cdn.webshopapp.com/shops/294692/files/464383763/tesla-tesla-wall-connector-gen-3-22-kw-type-2-73m.jpg',
         power: '7,4 kW monophasé', charge: '100 km en ~3 h',
         price: '559 € TTC',
         pros: [
