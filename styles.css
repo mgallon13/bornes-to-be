@@ -833,7 +833,7 @@ button { font-family: inherit; }
   margin: 14px 18px; border-radius: calc(var(--radius) + 2px); flex-shrink: 0;
 }
 .qrt-icon { font-size: 48px; line-height: 1; }
-.qrt-photo { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: inherit; }
+.qrt-photo { width: 100%; height: 100%; object-fit: contain; display: block; border-radius: inherit; padding: 10px; box-sizing: border-box; }
 .qrt-body { padding: 0 18px 22px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
 .qrt-brand { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.10em; text-transform: uppercase; color: var(--accent); }
 .qrt-power { font-size: 12.5px; color: var(--fg-muted); line-height: 1.4; }
