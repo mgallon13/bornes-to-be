@@ -595,7 +595,7 @@ function Questionnaire() {
                 Trouvez votre borne en 2 minutes
               </h2>
               <p className="lede">
-                5 questions sur votre logement, votre installation, votre véhicule et vos habitudes.
+                6 questions sur votre logement, votre installation, votre véhicule et vos habitudes.
                 On vous recommande exactement la solution qu'il vous faut.
               </p>
               <button className="btn btn-accent quiz-cta" onClick={handleStart}>
