@@ -808,9 +808,20 @@ button { font-family: inherit; }
   display: flex; flex-direction: column;
 }
 .qrt-card.qrt-highlighted {
-  border-color: var(--accent); border-width: 2px;
-  box-shadow: 0 4px 28px color-mix(in srgb, var(--accent) 14%, transparent);
+  border-color: #1a8fa0; border-width: 2px;
+  background: linear-gradient(160deg, #0c3d4a 0%, #0a2d38 100%);
+  box-shadow: 0 8px 36px rgba(15, 100, 120, 0.28);
 }
+.qrt-card.qrt-highlighted .qrt-tier-badge { color: rgba(255,255,255,0.5); }
+.qrt-card.qrt-highlighted .qrt-rec-label { background: #1ab8cc; color: #fff; }
+.qrt-card.qrt-highlighted .qrt-brand { color: #7de8f0; }
+.qrt-card.qrt-highlighted .qrt-price { color: #ffffff; }
+.qrt-card.qrt-highlighted .qrt-power { color: rgba(255,255,255,0.6); }
+.qrt-card.qrt-highlighted .qrt-pros { color: rgba(255,255,255,0.88); }
+.qrt-card.qrt-highlighted .qrt-pros li { color: rgba(255,255,255,0.88); }
+.qrt-card.qrt-highlighted .qrt-pros li::before { color: #2dd4e0; }
+.qrt-card.qrt-highlighted .qrt-cta { background: #1ab8cc; border-color: #1ab8cc; color: #fff; }
+.qrt-card.qrt-highlighted .qrt-visual { background: rgba(255,255,255,0.08) !important; }
 .qrt-header { padding: 16px 18px 0; display: flex; flex-direction: column; gap: 6px; min-height: 52px; }
 .qrt-rec-label {
   font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
