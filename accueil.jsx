@@ -266,7 +266,12 @@ function ContactSection({ defaultType = 'particulier' }) {
                 </p>
               </div> :
 
-            <form onSubmit={onSubmit}>
+            <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" onSubmit={onSubmit}>
+                <input type="hidden" name="form-name" value="contact" />
+                <input type="hidden" name="type" value={type} />
+                <p hidden>
+                  <label>Ne pas remplir : <input name="bot-field" /></label>
+                </p>
                 <div className="field" style={{ marginBottom: 18 }}>
                   <label>Mon projet est…</label>
                   <div className="segmented">
