@@ -302,7 +302,7 @@ function ContactSection({ defaultType = 'particulier' }) {
                 </div>
                 <div className="field" style={{ marginBottom: 18 }}>
                   <label>Votre projet en quelques lignes</label>
-                  <textarea placeholder="Copropriété (nb de places, syndic) ou logement individuel, type de stationnement, nombre de demandeurs, contraintes…" required />
+                  <textarea name="message" placeholder="Copropriété (nb de places, syndic) ou logement individuel, type de stationnement, nombre de demandeurs, contraintes…" required />
                 </div>
                 <div className="submit-row">
                   <span className="small">Réponse sous 24h ouvrées. Aucune donnée commerciale tierce.</span>
