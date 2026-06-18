@@ -283,11 +283,11 @@ function ContactSection({ defaultType = 'particulier' }) {
                 <div className="row">
                   <div className="field">
                     <label>Prénom</label>
-                    <input type="text" placeholder="Marie" required />
+                    <input type="text" name="prenom" placeholder="Marie" required />
                   </div>
                   <div className="field">
                     <label>Nom</label>
-                    <input type="text" placeholder="Dupont" required />
+                    <input type="text" name="nom" placeholder="Dupont" required />
                   </div>
                 </div>
                 <div className="row">
