@@ -51,26 +51,26 @@ function Trust() {
       <div className="wrap">
         <div className="trust-grid">
           <div className="irve reveal">
-            <span className="eyebrow">Certification</span>
+            <span className="eyebrow">Notre réseau</span>
             <div className="irve-badge">
               <span className="seal">✓</span>
               <span className="label">
-                <b>IRVE niveau 2</b>
-                <span>Habilitation Qualifelec · Renouvelée 2026</span>
+                <b>Électriciens certifiés IRVE</b>
+                <span>Partenaires qualifiés Qualifelec · Attestation Consuel</span>
               </span>
             </div>
           </div>
           <div className="stat reveal">
-            <div className="num">240<span className="sup">+</span></div>
-            <div className="lbl">Installations réalisées depuis 2022</div>
+            <div className="num">0<span className="sup">€</span></div>
+            <div className="lbl">Reste à charge possible pour le syndic (modèle opérateur)</div>
           </div>
           <div className="stat reveal">
-            <div className="num">15<span className="sup">j</span></div>
-            <div className="lbl">Délai moyen entre devis et installation</div>
+            <div className="num">50<span className="sup">%</span></div>
+            <div className="lbl">du coût HT financé par la prime ADVENIR</div>
           </div>
           <div className="stat reveal">
             <div className="num">100<span className="sup">%</span></div>
-            <div className="lbl">Interventions sur Marseille et alentours</div>
+            <div className="lbl">des démarches gérées : audit, aides, AG, installation</div>
           </div>
         </div>
       </div>
