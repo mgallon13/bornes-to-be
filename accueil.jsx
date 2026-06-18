@@ -20,21 +20,21 @@ function Hero({ variant }) {
       <div className="hero-meta">
         <span>Marseille · IRVE</span>
         <span>—</span>
-        <span>Installateur certifié</span>
+        <span>Sans reste à charge possible</span>
       </div>
       <div className="hero-content">
-        <div className="eyebrow">Bornes de recharge · Marseille</div>
+        <div className="eyebrow">Mobilité électrique en copropriété · Marseille</div>
         <h1 className="h-display" style={{ textAlign: "center", fontWeight: "300", color: "rgb(244, 244, 244)", letterSpacing: "-0.045em", lineHeight: "1.08" }}>
-          La borne qui s'adapte à votre projet.
+          Des bornes pour votre résidence, sans souci.
         </h1>
-        <p className="lede" style={{ marginTop: 24, color: variant === 'fullbleed' ? 'rgba(255,255,255,.85)' : undefined, maxWidth: '46ch' }}>Votre véhicule, votre installation, vos habitudes de conduite, on analyse tout ça avant de vous proposer une solution. Parce qu'une mauvaise borne bien installée, c'est quand même une mauvaise borne
-
-
-
+        <p className="lede" style={{ marginTop: 24, color: variant === 'fullbleed' ? 'rgba(255,255,255,.85)' : undefined, maxWidth: '46ch' }}>
+          On équipe votre copropriété en bornes de recharge, de l'assemblée générale à
+          la mise en service. Montage des aides, passage en AG, installation par nos
+          électriciens certifiés IRVE. Le syndic n'a rien à piloter.
         </p>
         <div className="hero-cta">
-          <a href="#contact" className="btn btn-light" style={{ color: "rgb(0, 0, 0)" }}>Demander un devis gratuit →</a>
-          <a href="#bornes" className="btn btn-clear">Découvrir nos solutions</a>
+          <a href="coproprietes.html#contact" className="btn btn-light" style={{ color: "rgb(0, 0, 0)" }}>Demander un audit gratuit →</a>
+          <a href="coproprietes.html" className="btn btn-clear">Notre accompagnement copro</a>
         </div>
       </div>
       {variant === 'fullbleed' &&
