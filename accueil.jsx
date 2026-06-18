@@ -293,11 +293,11 @@ function ContactSection({ defaultType = 'particulier' }) {
                 <div className="row">
                   <div className="field">
                     <label>Email</label>
-                    <input type="email" placeholder="marie@exemple.fr" required />
+                    <input type="email" name="email" placeholder="marie@exemple.fr" required />
                   </div>
                   <div className="field">
                     <label>Téléphone</label>
-                    <input type="tel" placeholder="06 …" required />
+                    <input type="tel" name="telephone" placeholder="06 …" required />
                   </div>
                 </div>
                 <div className="field" style={{ marginBottom: 18 }}>
