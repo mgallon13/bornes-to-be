@@ -168,7 +168,7 @@ function Footer({ phone }) {
         </div>
         <div className="foot-bottom">
           <span>© 2026 Bornes to Be</span>
-          <span>IRVE niveau 2 · SIRET 000 000 000 00000</span>
+          <span>Réseau d'électriciens certifiés IRVE · SIRET 000 000 000 00000</span>
         </div>
       </div>
     </footer>);
