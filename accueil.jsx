@@ -322,6 +322,6 @@ function AuditBanner() {
 }
 
 Object.assign(window, {
-  Hero, Trust, TvaBanner, SolarSection, BornesSection, ClientsSection, ContactSection,
+  Hero, Trust, AuditBanner, BornesSection, CoproHomeSection, ContactSection,
   PHONE
 });
