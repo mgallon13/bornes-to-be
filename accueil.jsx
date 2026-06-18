@@ -212,7 +212,16 @@ function ContactSection({ defaultType = 'particulier' }) {
   const [sent, setSent] = React.useState(false);
   const onSubmit = (e) => {
     e.preventDefault();
-    setSent(true);
+    const body = new URLSearchParams(new FormData(e.target)).toString();
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body,
+    })
+      .then(() => setSent(true))
+      .catch(() => {
+        alert(`Envoi impossible pour le moment. Vous pouvez nous joindre au ${PHONE} ou à contact@bornes-to-be.fr.`);
+      });
   };
   return (
     <section className="contact" id="contact">
