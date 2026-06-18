@@ -25,6 +25,20 @@
   </script>
 </head>
 <body>
+  <!-- Formulaire de détection Netlify Forms (caché). Sert uniquement à enregistrer
+       le formulaire "contact" au déploiement. Le vrai formulaire est rendu par React
+       et poste vers ce même nom. Ne pas supprimer. -->
+  <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+    <input type="hidden" name="form-name" value="contact" />
+    <input type="text" name="prenom" />
+    <input type="text" name="nom" />
+    <input type="email" name="email" />
+    <input type="tel" name="telephone" />
+    <input type="text" name="type" />
+    <textarea name="message"></textarea>
+    <input name="bot-field" />
+  </form>
+
   <div id="root"></div>
 
   <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
