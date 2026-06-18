@@ -303,18 +303,18 @@ function ContactSection({ defaultType = 'particulier' }) {
 
 }
 
-// ── TVA banner ────────────────────────────────────────────────────────────
-function TvaBanner() {
+// ── Audit banner ──────────────────────────────────────────────────────────
+function AuditBanner() {
   return (
     <div className="tva-banner">
       <div className="wrap">
         <div className="tva-inner">
-          <div className="tva-badge">TVA 5,5 %</div>
+          <div className="tva-badge">Audit gratuit</div>
           <div className="tva-text">
-            <strong>Avantage fiscal sur votre installation.</strong>
-            Fourniture et pose de votre borne par un installateur certifié IRVE : TVA réduite à 5,5 % au lieu de 20 %.
+            <strong>On évalue votre copropriété sans engagement.</strong>
+            Faisabilité technique, puissance disponible, aides mobilisables et meilleur montage : un audit complet, offert, avant toute décision.
           </div>
-          <a href="#contact" className="btn btn-ghost tva-cta">Obtenir mon devis →</a>
+          <a href="coproprietes.html#contact" className="btn btn-ghost tva-cta">Demander mon audit →</a>
         </div>
       </div>
     </div>
