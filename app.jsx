@@ -93,16 +93,6 @@ function TweaksUI({ t, setTweak, page }) {
                          onChange={(v) => setTweak('heroVariant', v)} />
           </TweakSection>
 
-          <TweakSection label="Bloc solaire">
-            <TweakSelect label="Traitement" value={t.solarVariant}
-                         options={[
-                           { value: 'schema', label: 'Schéma animé' },
-                           { value: 'immersive', label: 'Photo immersive' },
-                           { value: 'editorial', label: 'Éditorial · étapes' },
-                         ]}
-                         onChange={(v) => setTweak('solarVariant', v)} />
-          </TweakSection>
-
           <TweakSection label="Cartes bornes">
             <TweakRadio label="Style" value={t.cardStyle}
                         options={[
