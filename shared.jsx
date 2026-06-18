@@ -135,25 +135,24 @@ function Footer({ phone }) {
           <div>
             <div className="brand"><span className="dot"></span>Bornes to Be</div>
             <p style={{ color: 'var(--fg-soft)', fontSize: 14, marginTop: 16, maxWidth: '32ch' }}>
-              Installateur certifié IRVE à Marseille. Bornes de recharge pour particuliers
-              et copropriétés, intégration solaire.
+              Bornes de recharge en copropriété à Marseille. On orchestre votre projet
+              de A à Z avec nos électriciens certifiés IRVE.
             </p>
           </div>
           <div className="col">
             <h6>Solutions</h6>
             <ul>
-              <li><a href="index.html#bornes">Borne murale</a></li>
+              <li><a href="coproprietes.html">Copropriétés</a></li>
               <li><a href="index.html#bornes">Borne sur pied</a></li>
-              <li><a href="index.html#solaire">Solaire + borne</a></li>
+              <li><a href="index.html#bornes">Borne murale</a></li>
               <li><a href="particuliers.html">Particuliers</a></li>
-              <li><a href="index.html">Copropriétés</a></li>
             </ul>
           </div>
           <div className="col">
             <h6>Société</h6>
             <ul>
-              <li><a href="index.html#confiance">Certification IRVE</a></li>
-              <li><a href="index.html#confiance">Réalisations</a></li>
+              <li><a href="coproprietes.html">Offre copropriété</a></li>
+              <li><a href="index.html#confiance">Réseau IRVE</a></li>
               <li><a href="index.html#contact">Contact</a></li>
             </ul>
           </div>
