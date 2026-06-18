@@ -142,13 +142,36 @@ function AccueilApp() {
       <main>
         <Hero variant={t.heroVariant} />
         <Trust />
-        <TvaBanner />
+        <AuditBanner />
+        <CoproHomeSection />
         <BornesSection cardStyle={t.cardStyle} />
-        <SolarSection variant={t.solarVariant} />
-        <ContactSection />
+        <ContactSection defaultType="copro" />
       </main>
       <Footer phone={PHONE} />
       <TweaksUI t={t} setTweak={setTweak} page="accueil" />
+    </>
+  );
+}
+
+// ── Copropriétés app ──────────────────────────────────────────────────────
+function CoproApp() {
+  const [t, setTweak] = useTweaks(window.__TWEAK_DEFAULTS);
+  useApplyTweaks(t);
+  useReveal();
+  useHashScroll();
+  return (
+    <>
+      <Header phone={PHONE} currentPage="coproprietes" heroDark={false} />
+      <main>
+        <CoproHeader />
+        <CoproVoies />
+        <CoproWhat />
+        <CoproProcess />
+        <CoproFAQ />
+        <ContactSection defaultType="copro" />
+      </main>
+      <Footer phone={PHONE} />
+      <TweaksUI t={t} setTweak={setTweak} page="coproprietes" />
     </>
   );
 }
