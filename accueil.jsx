@@ -144,60 +144,62 @@ function BornesSection({ cardStyle }) {
 
 }
 
-// ── Clients (particuliers / copropriétés) ─────────────────────────────────
-function ClientsSection() {
+// ── Accompagnement copropriété (home) ─────────────────────────────────────
+function CoproHomeSection() {
   return (
     <section className="section" style={{ background: 'var(--bg-2)' }}>
       <div className="wrap">
         <SecHeader
-          eyebrow="Pour qui"
-          title="Particuliers ou copropriétés — l'approche change, l'exigence reste."
-          lede="Deux contextes, deux interlocuteurs, deux process. Nous adaptons l'étude, le devis et l'installation à ce que vous êtes." />
-        
-        <div className="cards" data-style="editorial">
-          <a href="particuliers.html" className="card reveal" style={{ background: 'var(--bg)' }}>
-            <div className="media" style={{ aspectRatio: '4/3' }}>
-              <Slot id="cli-part" placeholder="Maison individuelle, voiture branchée, fin de journée" />
-            </div>
+          eyebrow="Copropriétés"
+          title="On gère votre projet de bornes de A à Z."
+          lede="Audit, dossier d'aides, passage en assemblée générale, installation par nos électriciens certifiés IRVE, puis exploitation. Le syndic n'a rien à piloter."
+          action={<a href="coproprietes.html" className="btn btn-accent">Voir notre offre copropriété →</a>} />
+
+        <div className="cards three" data-style="editorial">
+          <article className="card reveal" style={{ background: 'var(--bg)' }}>
             <div className="body">
               <div className="meta">
-                <span className="tag">Particuliers</span>
+                <span className="tag">Sans reste à charge</span>
                 <span className="idx">01</span>
               </div>
-              <h3 className="ttl">Une borne chez vous, en quinze jours.</h3>
+              <h3 className="ttl"><span className="mark">0 € pour le syndicat</span></h3>
               <p className="desc">
-                Maison, garage ou box en résidence. On gère la visite technique,
-                les démarches, l'installation, et le SAV. Vous récupérez les clés
-                de votre nouvelle routine de recharge.
+                En modèle opérateur tiers-investisseur, l'infrastructure est financée
+                et le vote passe en assemblée à la majorité simple. Seuls les résidents
+                qui rechargent paient leur consommation.
               </p>
-              <div className="footer" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span className="btn-link">Voir la page Particuliers <span className="arr">↗</span></span>
-                <span className="mono small">Délai · 15 j</span>
-              </div>
             </div>
-          </a>
+          </article>
 
-          <a href="#contact" className="card reveal" style={{ background: 'var(--bg)' }}>
-            <div className="media" style={{ aspectRatio: '4/3' }}>
-              <Slot id="cli-copro" placeholder="Parking de copropriété, plusieurs bornes alignées" />
-            </div>
+          <article className="card reveal" style={{ background: 'var(--bg)' }}>
             <div className="body">
               <div className="meta">
-                <span className="tag">Copropriétés</span>
+                <span className="tag">Aides montées</span>
                 <span className="idx">02</span>
               </div>
-              <h3 className="ttl">Une infrastructure collective, propre et évolutive.</h3>
+              <h3 className="ttl"><span className="mark">Dossier d'aides clé en main</span></h3>
               <p className="desc">
-                Étude en assemblée, raccordement aux parties communes, gestion
-                des accès et refacturation. Une installation qui anticipe les
-                cinq prochains résidents qui passeront à l'électrique.
+                Prime ADVENIR (50 % du coût HT), TVA réduite à 5,5 %, aides locales :
+                on monte et on dépose le dossier avant le début des travaux, condition
+                indispensable pour y avoir droit.
               </p>
-              <div className="footer" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span className="btn-link">Demander un audit copro <span className="arr">↗</span></span>
-                <span className="mono small">Sur devis</span>
-              </div>
             </div>
-          </a>
+          </article>
+
+          <article className="card reveal" style={{ background: 'var(--bg)' }}>
+            <div className="body">
+              <div className="meta">
+                <span className="tag">Droit à la prise</span>
+                <span className="idx">03</span>
+              </div>
+              <h3 className="ttl"><span className="mark">Une borne sans attendre l'AG</span></h3>
+              <p className="desc">
+                Un copropriétaire veut équiper sa place ? On gère la notification au
+                syndic et l'installation individuelle, sans vote. Le syndic ne peut
+                s'opposer que par voie judiciaire.
+              </p>
+            </div>
+          </article>
         </div>
       </div>
     </section>);
