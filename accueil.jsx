@@ -207,8 +207,8 @@ function CoproHomeSection() {
 }
 
 // ── Contact ───────────────────────────────────────────────────────────────
-function ContactSection() {
-  const [type, setType] = React.useState('particulier');
+function ContactSection({ defaultType = 'particulier' }) {
+  const [type, setType] = React.useState(defaultType);
   const [sent, setSent] = React.useState(false);
   const onSubmit = (e) => {
     e.preventDefault();
