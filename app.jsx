@@ -208,4 +208,4 @@ function ParticuliersApp() {
   );
 }
 
-Object.assign(window, { AccueilApp, BornesPageApp, ParticuliersApp, TweakSection });
+Object.assign(window, { AccueilApp, CoproApp, BornesPageApp, ParticuliersApp, TweakSection });
